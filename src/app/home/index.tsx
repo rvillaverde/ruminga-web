@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "../../api/story";
-import Stories from "../../common/stories";
+import Stories from "../../components/stories";
 import { Lang } from "../../i18n";
 
 import styles from "../../../styles/Home.module.css";

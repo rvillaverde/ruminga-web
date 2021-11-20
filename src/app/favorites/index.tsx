@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import styles from "../../../styles/Home.module.css";
 import { Story } from "../../api/story";
-import Favorites from "../../common/favorites";
+import Favorites from "../../components/favorites";
 import { Lang } from "../../i18n";
 
 interface PropTypes {
