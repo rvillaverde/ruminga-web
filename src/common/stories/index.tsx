@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import { Story as StoryType } from "../../api/story";
+import { Lang } from "../../i18n";
 import Story from "./story";
 
 // import styles from "../../styles/Home.module.css";
@@ -8,10 +9,11 @@ import Story from "./story";
 interface PropTypes {
   current?: StoryType;
   // @TODO: Change to map
-  favorites: StoryType[];
+  favorites: StoryType["id"][];
+  lang: Lang;
   index?: number;
-  onAddFavorite: (story: StoryType) => void;
-  onRemoveFavorite: (story: StoryType) => void;
+  onAddFavorite: (story: StoryType["id"]) => void;
+  onRemoveFavorite: (story: StoryType["id"]) => void;
   stories: StoryType[];
 }
 
@@ -20,13 +22,14 @@ const Stories: NextPage<PropTypes> = (props: PropTypes) => {
     current,
     favorites,
     index,
+    lang,
     onAddFavorite,
     onRemoveFavorite,
     stories,
   } = props;
 
-  const handleToggleFavorite = (story: StoryType) => (favorite: boolean) => {
-    return favorite ? onRemoveFavorite(story) : onAddFavorite(story);
+  const handleToggleFavorite = ({ id }: StoryType) => (favorite: boolean) => {
+    return favorite ? onRemoveFavorite(id) : onAddFavorite(id);
   };
 
   return (
@@ -35,7 +38,8 @@ const Stories: NextPage<PropTypes> = (props: PropTypes) => {
         <Story
           index={index || 0}
           isCurrent={!!current && current.id === story.id}
-          isFavorite={favorites.some((f) => f.id === story.id)}
+          isFavorite={favorites.some((f) => f === story.id)}
+          lang={lang}
           key={story.id}
           onToggleFavorite={handleToggleFavorite(story)}
           story={story}

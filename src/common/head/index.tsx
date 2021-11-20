@@ -1,20 +1,17 @@
 import type { NextPage, NextPageContext } from "next";
 import NextHead from "next/head";
 import React from "react";
+import { Story } from "../../api/story";
+import { Lang } from "../../i18n";
 
 // @TODO: get from env
 const BASE_URL = "https://www.ruminga.com";
 
 interface PropTypes {
   index?: number;
+  lang: Lang;
   story?: Story;
   title?: string;
-}
-
-// @TODO: move to global types dir
-interface Story {
-  id: string;
-  name: string;
 }
 
 interface OgMetadata {
@@ -27,9 +24,10 @@ interface OgMetadata {
 
 class Head extends React.Component<PropTypes> {
   get title(): string {
-    const { story, title } = this.props;
+    const { lang, story, title } = this.props;
+    const name = story && story[lang].name;
 
-    return `${story ? story.name + " - " : title ? title + " - " : ""}Ruminga`;
+    return `${story ? name + " - " : title ? title + " - " : ""}Ruminga`;
   }
 
   get url(): string {
@@ -66,33 +64,5 @@ class Head extends React.Component<PropTypes> {
     );
   }
 }
-
-// const Head2: NextPage<PropTypes> = (props: PropTypes) => {
-//   const { story, index } = props;
-
-//   const url = `${BASE_URL}${story ? "/stories/" + story.id : ""}${
-//     index ? "/" + index : ""
-//   }`;
-
-//   const title = `${story ? story.name + " - " : ""}Ruminga`;
-
-//   const og: OgMetadata = {
-//     url,
-//     title,
-//   };
-
-//   return (
-//     <NextHead>
-//       <title>Ruminga</title>
-//       <meta name="description" content="Ruminga" />
-//       <link rel="icon" href="/favicon.ico" />
-//       <meta property="og:url" content={og.url} />
-//       {/* <meta property="og:type" content="article" /> */}
-//       <meta property="og:title" content={og.title} />
-//       {/* <meta property="og:description" content="Ruminga" /> */}
-//       {/* <meta property="og:image" content="ruminga.com/logo.png" /> */}
-//     </NextHead>
-//   );
-// };
 
 export default Head;

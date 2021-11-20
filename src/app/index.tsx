@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
-import storyAPI, { Story } from "../api/story";
+import { Story } from "../api/story";
 import Head from "../common/head";
 import Menu from "../common/menu";
-import Home from "./home";
+import { Section } from "../helpers/types";
+import { activeTitle } from "../helpers";
+import { Lang, lang } from "../i18n";
 import About from "./about";
 import Favorites from "./favorites";
+import Home from "./home";
 import Login from "./login";
 
 import styles from "../../styles/Home.module.css";
-
-import { defaultLocale, Lang, menu, lang } from "../i18n";
-import { Section } from "../helpers/types";
-import { MenuItem } from "../i18n/menu";
-import { activeTitle, sections } from "../helpers";
 
 type Page = Section["id"];
 
 interface PropTypes {
   index?: number;
-  story?: Story;
-  stories?: Story[];
-  page: Page;
   loading: boolean;
+  page: Page;
+  stories?: Story[];
+  story?: Story;
 }
 
-const App: NextPage<PropTypes> = (props: PropTypes) => {
+const loadingText = {
+  en: "Loading...",
+  es: "Cargando...",
+};
+
+const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { story, stories, index, page, loading } = props;
 
   const { locale } = useRouter();
@@ -39,23 +42,25 @@ const App: NextPage<PropTypes> = (props: PropTypes) => {
   const title = activeTitle(page, lang(locale));
 
   // @TODO: favorites should be an array of storyId and photo
-  const handleFavoritesChange = (favorites: Story[]) => {
+  const handleFavoritesChange = (favorites: Story["id"][]) => {
+    // console.log("handle favorites change", favorites);
     return setCookie("favorites", JSON.stringify(favorites));
   };
 
   return (
     <div className={styles.container}>
-      <Head index={index} story={story} title={title} />
+      <Head index={index} lang={lang(locale)} story={story} title={title} />
 
       <main className={styles.main}>
         {loading ? (
-          <div>Loading...</div>
+          <div>{loadingText[lang(locale)]}</div>
         ) : (
           <React.Fragment>
             {page === "home" && (
               <Home
                 index={index || 0}
                 favorites={favorites}
+                lang={lang(locale)}
                 stories={stories}
                 onFavoritesChange={handleFavoritesChange}
                 story={story}
@@ -66,7 +71,9 @@ const App: NextPage<PropTypes> = (props: PropTypes) => {
             {page === "favorites" && (
               <Favorites
                 favorites={favorites}
+                lang={lang(locale)}
                 onFavoritesChange={handleFavoritesChange}
+                stories={stories || []}
                 title={title}
               />
             )}
@@ -77,32 +84,6 @@ const App: NextPage<PropTypes> = (props: PropTypes) => {
       <Menu active={page} locale={locale as Lang} />
     </div>
   );
-};
-
-// @TODO: FETCH COOKIES
-App.getInitialProps = async (ctx): Promise<PropTypes> => {
-  const isServer = !!ctx.req;
-
-  if (isServer) {
-    const { index: idx, storyId } = ctx.query;
-
-    if (!storyId) return { loading: false, page: "home" };
-
-    try {
-      const story = await storyAPI.get(storyId as Story["id"]);
-
-      return {
-        index: idx ? Number(idx) : 0,
-        loading: false,
-        page: "home",
-        story,
-      };
-    } catch (e) {
-      console.log("Error getting story", storyId, e);
-    }
-  }
-
-  return { loading: false, page: "home" };
 };
 
 export default App;

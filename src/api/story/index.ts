@@ -5,14 +5,58 @@ const PATH = "stories";
 
 const URL = `${API_URL}/${PATH}`;
 
-export interface Story {
-  id: string;
+interface StoryInfo {
+  description: string;
   name: string;
+}
+
+export interface Story {
+  en: StoryInfo;
+  es: StoryInfo;
+  id: string;
+  order: number;
+  photos: Photo[];
+}
+
+export interface Photo {
+  id: string;
+  image: Image;
+  order: number;
+}
+
+export interface Image {
+  orientation: "horizontal" | "square" | "vertical";
+  thumbnails: {
+    full: string;
+    large: string;
+    small: string;
+  };
+  url: string;
 }
 
 const mapStory = (data: any): Story => ({
   id: data.id,
-  name: data.name,
+  en: {
+    description: data.en.description,
+    name: data.en.name,
+  },
+  es: {
+    description: data.es.description,
+    name: data.es.name,
+  },
+  order: data.order,
+  photos: data.photos.map((photo: any) => ({
+    id: photo.id,
+    image: {
+      orientation: photo.image.orientation,
+      thumbnails: {
+        full: photo.image.full,
+        large: photo.image.large,
+        small: photo.image.small,
+      },
+    },
+    order: photo.order,
+  })),
 });
 
 const mapStories = (data: any[]): Story[] => data.map((d) => mapStory(d));

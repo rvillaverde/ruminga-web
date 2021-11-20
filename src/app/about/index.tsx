@@ -14,7 +14,10 @@ const text = {
   es: "Acá va el texto sobre mí.",
 };
 
-const About: NextPage<PropTypes> = ({ lang, title }: PropTypes) => {
+const About: React.FunctionComponent<PropTypes> = ({
+  lang,
+  title,
+}: PropTypes) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{title}.</h1>

@@ -1,21 +1,24 @@
-import { NextPage } from "next";
 import React from "react";
 import { Story } from "../../api/story";
+import { Lang } from "../../i18n";
 
 // import styles from "../../styles/Home.module.css";
 
 interface PropTypes {
+  lang: Lang;
   onRemoveFavorite: () => void;
   story: Story;
 }
 
-const Favorite: NextPage<PropTypes> = (props: PropTypes) => {
-  const { onRemoveFavorite, story } = props;
+const Favorite: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { lang, onRemoveFavorite, story } = props;
+
+  const { name } = story[lang];
 
   return (
     <div className="favorite">
       <button onClick={onRemoveFavorite}>❤</button>
-      <strong>{story.name}</strong>
+      <strong>{name}</strong>
     </div>
   );
 };

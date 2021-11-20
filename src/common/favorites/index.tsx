@@ -1,20 +1,21 @@
 import React from "react";
-import { NextPage } from "next";
 import { Story } from "../../api/story";
+import { Lang } from "../../i18n";
 import Favorite from "./favorite";
 
 // import styles from "../../styles/Home.module.css";
 
 interface PropTypes {
   favorites: Story[];
-  onRemoveFavorite: (story: Story) => void;
+  lang: Lang;
+  onRemoveFavorite: (story: Story["id"]) => void;
 }
 
-const Favorites: NextPage<PropTypes> = (props: PropTypes) => {
-  const { favorites, onRemoveFavorite } = props;
+const Favorites: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { favorites, lang, onRemoveFavorite } = props;
 
-  const handleRemoveFavorote = (story: Story) => () => {
-    return onRemoveFavorite(story);
+  const handleRemoveFavorote = (id: Story["id"]) => () => {
+    return onRemoveFavorite(id);
   };
 
   return (
@@ -22,7 +23,8 @@ const Favorites: NextPage<PropTypes> = (props: PropTypes) => {
       {favorites.map((favorite) => (
         <Favorite
           key={favorite.id}
-          onRemoveFavorite={handleRemoveFavorote(favorite)}
+          lang={lang}
+          onRemoveFavorite={handleRemoveFavorote(favorite.id)}
           story={favorite}
         />
       ))}

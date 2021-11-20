@@ -7,7 +7,7 @@ interface PropTypes {
   lang: string;
 }
 
-const Login: NextPage<PropTypes> = ({ lang }: PropTypes) => {
+const Login: React.FunctionComponent<PropTypes> = ({ lang }: PropTypes) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Login</h1>
