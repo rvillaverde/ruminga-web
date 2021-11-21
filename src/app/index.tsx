@@ -16,6 +16,7 @@ import Login from "./login";
 import styles from "./app.module.sass";
 import classNames from "classnames";
 import Loading from "../components/loading";
+import { Texts } from "../api/text";
 
 type Page = Section["id"];
 
@@ -25,15 +26,11 @@ interface PropTypes {
   page: Page;
   stories?: Story[];
   story?: Story;
+  texts?: Texts;
 }
 
-const loadingText = {
-  en: "Loading...",
-  es: "Cargando...",
-};
-
 const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { story, stories, index, page, loading } = props;
+  const { story, stories, index, page, loading, texts } = props;
 
   const { locale } = useRouter();
   // const { locale, locales, defaultLocale } = useRouter();
@@ -47,7 +44,7 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   // @TODO: favorites should be an array of storyId and photo
   const handleFavoritesChange = (favorites: Story["id"][]) => {
     // console.log("handle favorites change", favorites);
-    return setCookie("favorites", JSON.stringify(favorites));
+    return setCookie("favorites", favorites);
   };
 
   return (
@@ -59,7 +56,7 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           <Loading lang={lang(locale)} />
         ) : (
           <React.Fragment>
-            {page === "home" && (
+            {isHome ? (
               <Home
                 index={index || 0}
                 favorites={favorites}
@@ -68,17 +65,28 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
                 onFavoritesChange={handleFavoritesChange}
                 story={story}
               />
-            )}
-            {page === "about" && <About lang={lang(locale)} title={title} />}
-            {page === "login" && <Login lang={lang(locale)} />}
-            {page === "favorites" && (
-              <Favorites
-                favorites={favorites}
-                lang={lang(locale)}
-                onFavoritesChange={handleFavoritesChange}
-                stories={stories || []}
-                title={title}
-              />
+            ) : (
+              <React.Fragment>
+                <div className="page">
+                  {page === "about" && texts && (
+                    <About
+                      lang={lang(locale)}
+                      title={title}
+                      text={texts["about"]}
+                    />
+                  )}
+                  {page === "login" && <Login lang={lang(locale)} />}
+                  {page === "favorites" && (
+                    <Favorites
+                      favorites={favorites}
+                      lang={lang(locale)}
+                      onFavoritesChange={handleFavoritesChange}
+                      stories={stories || []}
+                      title={title}
+                    />
+                  )}
+                </div>
+              </React.Fragment>
             )}
           </React.Fragment>
         )}

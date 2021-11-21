@@ -1,3 +1,5 @@
+@import "../../../styles/partials/_variables"
+
 .story
   color: black
   display: flex
@@ -8,7 +10,10 @@
   position: relative
   padding: 80px
 
-  // &.current
+  &.favorite
+    .title
+      button
+        color: $color
 
 .card
   background-color: rgba(255,255,255,1.8)
@@ -28,10 +33,11 @@
   justify-content: space-between
 
   button
-    margin-right: 8px
+    margin-left: 20px
     border: none
     background: transparent
     cursor: pointer
+    color: $grayMedium
 
 .description
   display: flex

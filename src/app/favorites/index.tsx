@@ -31,8 +31,8 @@ class Page extends React.Component<PropTypes> {
     const { favorites, lang, title } = this.props;
 
     return (
-      <div>
-        <h1 className="header">{title}.</h1>
+      <React.Fragment>
+        <h2 className="header">{title}.</h2>
 
         {favorites && favorites.length ? (
           // @TODO: warning in console on SSR in this line
@@ -44,7 +44,7 @@ class Page extends React.Component<PropTypes> {
         ) : (
           <p>No hay favoritos.</p>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -21,11 +21,17 @@ const Story: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
 
   const { description, name } = story[lang];
 
-  const handleToggleFavorite = () => onToggleFavorite(!!isFavorite);
+  const handleToggleFavorite = () => {
+    // console.log("handleToggleFavorite", !!isFavorite);
+    return onToggleFavorite(!!isFavorite);
+  };
 
   return (
     <div
-      className={classnames(styles.story, { [styles.current]: isCurrent })}
+      className={classnames(styles.story, {
+        [styles.current]: isCurrent,
+        [styles.favorite]: isFavorite,
+      })}
       id={story.id}
     >
       <div className={styles.card}>
@@ -33,12 +39,11 @@ const Story: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           <Link href={`/?storyId=${story.id}`}>
             <a>
               <h4>{name}</h4>
-              {/* {isCurrent ? <strong>{name}</strong> : <span>{name}</span>} */}
             </a>
           </Link>
           <button
             onClick={handleToggleFavorite}
-            style={{ color: isFavorite ? "red" : "black" }}
+            // style={{ color: isFavorite ? "red" : "black" }}
           >
             ❤
           </button>

@@ -80,7 +80,7 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
                     <strong>{l}</strong>
                   ) : (
                     <Link href={asPath} locale={l}>
-                      {l}
+                      <a onClick={toggleMenuOpen}>{l}</a>
                     </Link>
                   )}
                 </span>
@@ -89,41 +89,6 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           ))}
         </ul>
       </div>
-      {/* {menuOpen && (
-        <React.Fragment>
-          <ul className={styles["menu-list"]}>
-            {items.map((item) => (
-              <li key={item.id}>
-                <Link href={item.href}>
-                  {active === item.id ? (
-                    <strong>{item.label}</strong>
-                  ) : (
-                    <a>{item.label}</a>
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ul className={styles["locales-list"]}>
-            {locales.map((l, i) => (
-              <li key={l}>
-                <React.Fragment>
-                  {i > 0 && "|"}
-                  <span className={styles.locale}>
-                    {l === locale ? (
-                      <strong>{l}</strong>
-                    ) : (
-                      <Link href={asPath} locale={l}>
-                        {l}
-                      </Link>
-                    )}
-                  </span>
-                </React.Fragment>
-              </li>
-            ))}
-          </ul>
-        </React.Fragment>
-      )} */}
     </div>
   );
 };

@@ -1,23 +1,21 @@
 import React from "react";
+import { Texts } from "../../api/text";
 import { Lang } from "../../i18n";
 
 interface PropTypes {
   lang: Lang;
   title: string;
+  text: Texts["about"];
 }
-
-const text = {
-  en: "Here goes about me text.",
-  es: "Acá va el texto sobre mí.",
-};
 
 const About: React.FunctionComponent<PropTypes> = ({
   lang,
+  text,
   title,
 }: PropTypes) => {
   return (
     <div>
-      <h1 className="header">{title}.</h1>
+      <h2 className="header">{title}.</h2>
       <p>{text[lang]}</p>
     </div>
   );
