@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
+import HeartIcon from "../../icons/heart";
 
 import styles from "./favorite.module.sass";
 
@@ -19,7 +20,9 @@ const Favorite: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     <div className={styles.favorite}>
       <div className={styles.title}>
         <h4>{name}</h4>
-        <button onClick={onRemoveFavorite}>❤</button>
+        <button onClick={onRemoveFavorite}>
+          <HeartIcon isFavorite />
+        </button>
       </div>
       <div className={styles.photos}>
         {story.photos.map((photo) => (

@@ -10,6 +10,9 @@
   position: relative
   padding: 80px
 
+  @media ($smallScreen)
+    padding: 0 40px
+
   &.favorite
     .title
       button
@@ -27,6 +30,12 @@
   overflow: hidden
   display: flex
   flex-direction: column
+
+  @media ($smallScreen)
+    max-height: 40vh
+    max-width: 100%
+    width: 100%
+    justify-content: space-between
 
 .title
   display: flex
@@ -60,6 +69,9 @@
   min-width: 100vw
   display: flex
   padding: 40px
+
+  @media ($smallScreen)
+    padding: 12px
 
 .image
   width: 100vw

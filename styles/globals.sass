@@ -25,6 +25,9 @@ h4
   font-weight: 100
   margin: 0
 
+  @media ($smallScreen)
+    font-size: 20px
+
 h2
   color: $color
   font-family: Arapey, serif
@@ -32,9 +35,32 @@ h2
   font-weight: 400
   margin: 0
 
+  @media ($smallScreen)
+    font-size: 32px
+
+p
+  margin: 0
+
 .page
-  padding: 80px
+  padding: 60px
   width: 100%
+
+  @media ($smallScreen)
+    padding: 20px
 
 .header
   margin-bottom: 24px
+
+.heart-icon
+  display: flex
+  width: 16px
+
+  svg > path
+    transition: all 250ms ease
+    stroke: $grayDarkest
+
+  &:hover
+  &.active
+    svg > path
+      stroke: $color
+      fill: $color

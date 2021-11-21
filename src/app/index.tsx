@@ -91,7 +91,8 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         )}
       </main>
 
-      <Menu active={page} locale={locale as Lang} />
+      <Menu active={page} locale={locale as Lang} type="floating" />
+      <Menu active={page} locale={locale as Lang} type="fixed" />
     </div>
   );
 };

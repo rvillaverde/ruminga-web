@@ -1,13 +1,36 @@
+@import "../../../styles/partials/_variables"
+
 .menu-wrapper
   position: fixed
   top: 0
   left: 0
   z-index: 4
 
-  &.home
+  &.fixed
+    width: 240px
+    .menu-toggle
+      visibility: hidden
+
+  &.home.fixed
+    display: none
+
+  @media ($smallScreen)
+    &.fixed
+      display: none
+
+  &.floating
+    &:not(.open) .menu
+      width: 0
     .menu
-      text-align: center
       width: 100vw
+      &.animate-out
+        animation: out-animation 250ms ease-out
+        animation-fill-mode: forwards
+    &.open
+      .menu
+        &.animate-in
+          width: 100vw
+          animation: in-animation 250ms ease-in
 
 .menu
   height: 100vh
@@ -17,7 +40,10 @@
   align-items: center
   justify-content: center
   flex-direction: column
-  width: 240px
+  transition: width 250ms ease-out
+
+  // .open
+  //   width: 100vw
 
 .menu-toggle
   position: absolute
@@ -26,6 +52,7 @@
   cursor: pointer
   background: transparent
   border: none
+  padding: 0
 
 .menu-icon
   display: flex
@@ -54,9 +81,8 @@
   margin: 0 4px
   text-transform: uppercase
 
-@keyframes inAnimation
+@keyframes in-animation
   0%
-    width: 100vw
     opacity: 0
     visibility: hidden
 
@@ -64,11 +90,10 @@
     opacity: 1
     visibility: visible
 
-@keyframes outAnimation
+@keyframes out-animation
   0%
     opacity: 1
 
   100%
     opacity: 0
     visibility: hidden
-    width: 0

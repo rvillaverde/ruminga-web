@@ -6,6 +6,7 @@ import { Lang } from "../../i18n";
 
 import styles from "./story.module.sass";
 import { useRouter } from "next/router";
+import HeartIcon from "../../icons/heart";
 
 interface PropTypes {
   index: number;
@@ -41,11 +42,8 @@ const Story: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
               <h4>{name}</h4>
             </a>
           </Link>
-          <button
-            onClick={handleToggleFavorite}
-            // style={{ color: isFavorite ? "red" : "black" }}
-          >
-            ❤
+          <button onClick={handleToggleFavorite}>
+            <HeartIcon isFavorite={isFavorite} />
           </button>
         </div>
         {description && (

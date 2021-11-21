@@ -12,10 +12,11 @@ import CloseIcon from "../../icons/close";
 interface PropTypes {
   active: Section["id"];
   locale: Lang;
+  type: "fixed" | "floating";
 }
 
 const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { active, locale } = props;
+  const { active, locale, type } = props;
   const { asPath } = useRouter();
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -28,34 +29,25 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
 
   const isHome = active === "home";
 
-  const mountedStyle = {
-    animation: `${styles.inAnimation} 250ms ease-in`,
-    // animationFillMode: "forwards",
-  };
-  const unmountedStyle = {
-    animation: `${styles.outAnimation} 270ms ease-out`,
-    animationFillMode: "forwards",
-  };
-
   return (
     <div
-      className={classnames(styles["menu-wrapper"], {
+      className={classnames(styles["menu-wrapper"], styles[type], {
         [styles.open]: menuOpen,
         [styles.home]: isHome,
       })}
     >
-      {isHome && (
-        <button className={styles["menu-toggle"]} onClick={toggleMenuOpen}>
-          {menuOpen ? (
-            <CloseIcon />
-          ) : (
-            <MenuIcon className={styles["menu-icon"]} />
-          )}
-        </button>
-      )}
+      <button className={styles["menu-toggle"]} onClick={toggleMenuOpen}>
+        {menuOpen ? (
+          <CloseIcon />
+        ) : (
+          <MenuIcon className={styles["menu-icon"]} />
+        )}
+      </button>
       <div
-        className={styles.menu}
-        style={isHome ? (menuOpen ? mountedStyle : unmountedStyle) : {}}
+        className={classnames(styles.menu, {
+          [styles["animate-in"]]: menuOpen,
+          [styles["animate-out"]]: !menuOpen,
+        })}
       >
         <ul className={styles["menu-list"]}>
           {items.map((item) => (

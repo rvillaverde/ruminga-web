@@ -1,6 +1,12 @@
+@import "../../styles/partials/_variables"
+
 .container
   padding: 0
   padding-left: 240px
+
+  @media ($smallScreen)
+    padding-left: 0
+    padding-top: 48px
 
   &.home
     padding-left: 0
@@ -9,3 +15,6 @@
   min-height: 100vh
   padding: 0
   display: flex
+
+  @media ($smallScreen)
+    min-height: 100%

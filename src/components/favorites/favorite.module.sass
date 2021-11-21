@@ -1,5 +1,8 @@
+@import "../../../styles/partials/_variables"
+
 .favorite
-  margin-bottom: 32px
+  &:not(:last-child)
+    margin-bottom: 32px
 
 .title
   display: flex
@@ -9,6 +12,7 @@
   button
     background: transparent
     border: none
+    cursor: pointer
 
 .photos
   display: flex
