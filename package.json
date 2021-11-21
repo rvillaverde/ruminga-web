@@ -2,6 +2,9 @@
   "name": "ruminga-web",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
