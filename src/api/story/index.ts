@@ -34,30 +34,35 @@ export interface Image {
   url: string;
 }
 
-const mapStory = (data: any): Story => ({
-  id: data.id,
-  en: {
-    description: data.en.description,
-    name: data.en.name,
-  },
-  es: {
-    description: data.es.description,
-    name: data.es.name,
-  },
-  order: data.order,
-  photos: data.photos.map((photo: any) => ({
-    id: photo.id,
-    image: {
-      orientation: photo.image.orientation,
-      thumbnails: {
-        full: photo.image.full,
-        large: photo.image.large,
-        small: photo.image.small,
-      },
+const mapStory = (data: any): Story => {
+  const story: Story = {
+    id: data.id,
+    en: {
+      description: data.en.description,
+      name: data.en.name,
     },
-    order: photo.order,
-  })),
-});
+    es: {
+      description: data.es.description,
+      name: data.es.name,
+    },
+    order: data.order,
+    photos: data.photos.map((photo: any) => ({
+      id: photo.id,
+      image: {
+        orientation: photo.image.orientation,
+        thumbnails: {
+          full: photo.image.thumbnails.full,
+          large: photo.image.thumbnails.large,
+          small: photo.image.thumbnails.small,
+        },
+        url: photo.image.url,
+      },
+      order: photo.order,
+    })),
+  };
+
+  return story;
+};
 
 const mapStories = (data: any[]): Story[] => data.map((d) => mapStory(d));
 

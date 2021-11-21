@@ -3,8 +3,6 @@ import { NextPage } from "next";
 import { Story } from "../api/story";
 import App from "../app";
 
-import styles from "../../styles/Home.module.css";
-
 interface PropTypes {
   loading: boolean;
   stories?: Story[];

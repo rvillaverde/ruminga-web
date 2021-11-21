@@ -2,8 +2,6 @@ import React from "react";
 import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 
-// import styles from "../../styles/Home.module.css";
-
 interface PropTypes {
   lang: Lang;
   onRemoveFavorite: () => void;

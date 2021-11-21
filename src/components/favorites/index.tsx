@@ -3,8 +3,6 @@ import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 import Favorite from "./favorite";
 
-// import styles from "../../styles/Home.module.css";
-
 interface PropTypes {
   favorites: Story[];
   lang: Lang;

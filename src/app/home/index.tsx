@@ -3,7 +3,7 @@ import { Story } from "../../api/story";
 import Stories from "../../components/stories";
 import { Lang } from "../../i18n";
 
-import styles from "../../../styles/Home.module.css";
+import styles from "./home.module.sass";
 
 interface PropTypes {
   favorites: Story["id"][];
@@ -35,7 +35,9 @@ class Home extends React.Component<PropTypes> {
 
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>{title[lang]}</h1>
+        <div className={styles.welcome}>
+          <h1>{title[lang]}</h1>
+        </div>
 
         {stories ? (
           <Stories

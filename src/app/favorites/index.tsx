@@ -1,6 +1,4 @@
 import React from "react";
-import { NextPage } from "next";
-import styles from "../../../styles/Home.module.css";
 import { Story } from "../../api/story";
 import Favorites from "../../components/favorites";
 import { Lang } from "../../i18n";
@@ -33,8 +31,8 @@ class Page extends React.Component<PropTypes> {
     const { favorites, lang, title } = this.props;
 
     return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>{title}.</h1>
+      <div>
+        <h1 className="header">{title}.</h1>
 
         {favorites && favorites.length ? (
           // @TODO: warning in console on SSR in this line

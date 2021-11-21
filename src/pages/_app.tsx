@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
 import storyAPI, { Story } from "../api/story";
 
-import "../../styles/globals.css";
+import "../../styles/globals.sass";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [stories, setStories] = useState<Story[]>([]);

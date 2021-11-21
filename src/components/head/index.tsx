@@ -51,6 +51,9 @@ class Head extends React.Component<PropTypes> {
     const { og, title } = this;
 
     return (
+      // <NextHead>
+      //   <title>{title}</title>
+      // </NextHead>
       <NextHead>
         <title>{title}</title>
         <meta name="description" content="Ruminga" />

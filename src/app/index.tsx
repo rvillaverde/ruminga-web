@@ -13,7 +13,9 @@ import Favorites from "./favorites";
 import Home from "./home";
 import Login from "./login";
 
-import styles from "../../styles/Home.module.css";
+import styles from "./app.module.sass";
+import classNames from "classnames";
+import Loading from "../components/loading";
 
 type Page = Section["id"];
 
@@ -40,6 +42,7 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { favorites = [] } = cookie;
 
   const title = activeTitle(page, lang(locale));
+  const isHome = page === "home";
 
   // @TODO: favorites should be an array of storyId and photo
   const handleFavoritesChange = (favorites: Story["id"][]) => {
@@ -48,12 +51,12 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, { [styles.home]: isHome })}>
       <Head index={index} lang={lang(locale)} story={story} title={title} />
 
       <main className={styles.main}>
         {loading ? (
-          <div>{loadingText[lang(locale)]}</div>
+          <Loading lang={lang(locale)} />
         ) : (
           <React.Fragment>
             {page === "home" && (

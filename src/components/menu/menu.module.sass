@@ -1,0 +1,71 @@
+.menu-wrapper
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 4
+
+  &.home
+    .menu
+      width: 100vw
+
+.menu
+  height: 100vh
+  padding: 20px
+  background-color: rgba(255,255,255,0.9)
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  width: 240px
+
+.menu-toggle
+  position: absolute
+  top: 20px
+  left: 20px
+  cursor: pointer
+  background: transparent
+  border: none
+
+.menu-icon
+  display: flex
+  width: 20px
+
+.menu-list
+  list-style: none
+  padding: 0
+
+.locales-list
+  list-style: none
+  display: flex
+  padding: 0
+
+  li:first-child
+    span
+      margin-left: 0
+
+  li:last-child
+    span
+      margin-right: 0
+
+.locale
+  margin: 0 4px
+  text-transform: uppercase
+
+@keyframes inAnimation
+  0%
+    width: 100vw
+    opacity: 0
+    visibility: hidden
+
+  100%
+    opacity: 1
+    visibility: visible
+
+@keyframes outAnimation
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0
+    visibility: hidden
+    width: 0

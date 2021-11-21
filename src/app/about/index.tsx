@@ -1,8 +1,5 @@
 import React from "react";
-import { NextPage } from "next";
 import { Lang } from "../../i18n";
-
-import styles from "../../../styles/Home.module.css";
 
 interface PropTypes {
   lang: Lang;
@@ -19,8 +16,8 @@ const About: React.FunctionComponent<PropTypes> = ({
   title,
 }: PropTypes) => {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>{title}.</h1>
+    <div>
+      <h1 className="header">{title}.</h1>
       <p>{text[lang]}</p>
     </div>
   );

@@ -1,7 +1,4 @@
-import { NextPage } from "next";
 import React from "react";
-
-import styles from "../../../styles/Home.module.css";
 
 interface PropTypes {
   lang: string;
@@ -9,8 +6,8 @@ interface PropTypes {
 
 const Login: React.FunctionComponent<PropTypes> = ({ lang }: PropTypes) => {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Login</h1>
+    <div>
+      <h1 className="header">Login</h1>
       <p>lang: {lang}</p>
     </div>
   );

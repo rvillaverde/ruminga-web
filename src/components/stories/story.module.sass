@@ -1,0 +1,62 @@
+.story
+  color: black
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100vh
+  width: 100vw
+  position: relative
+  padding: 80px
+
+  // &.current
+
+.card
+  background-color: rgba(255,255,255,1.8)
+  padding: 20px
+  max-height: 400px
+  max-width: 400px
+  position: relative
+  z-index: 4
+  margin-left: auto
+  margin-top: auto
+  overflow: hidden
+  display: flex
+  flex-direction: column
+
+.title
+  display: flex
+  justify-content: space-between
+
+  button
+    margin-right: 8px
+    border: none
+    background: transparent
+    cursor: pointer
+
+.description
+  display: flex
+  margin-top: 12px
+  overflow: hidden
+
+.description-scroll
+  white-space: pre-line
+  overflow: auto
+
+.photos
+  height: 100vh
+  width: 100vw
+  overflow-y: auto
+  display: flex
+  position: absolute
+  z-index: 0
+
+.photo
+  min-width: 100vw
+  display: flex
+  padding: 40px
+
+.image
+  width: 100vw
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
