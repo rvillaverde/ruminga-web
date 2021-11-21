@@ -28,12 +28,10 @@ class Page extends React.Component<PropTypes> {
   }
 
   render() {
-    const { favorites, lang, title } = this.props;
+    const { favorites, lang } = this.props;
 
     return (
       <React.Fragment>
-        <h2 className="header">{title}.</h2>
-
         {favorites && favorites.length ? (
           // @TODO: warning in console on SSR in this line
           <Favorites

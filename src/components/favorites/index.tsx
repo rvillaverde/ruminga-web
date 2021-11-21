@@ -3,6 +3,8 @@ import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 import Favorite from "./favorite";
 
+import styles from "./favorite.module.sass";
+
 interface PropTypes {
   favorites: Story[];
   lang: Lang;
@@ -17,7 +19,7 @@ const Favorites: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   };
 
   return (
-    <div className="favorites">
+    <div className={styles.favorites}>
       {favorites.map((favorite) => (
         <Favorite
           key={favorite.id}
