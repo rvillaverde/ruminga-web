@@ -1,9 +1,11 @@
 import React from "react";
-import { NextPage } from "next";
+import classNames from "classnames";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import { Story } from "../api/story";
+import { Texts } from "../api/texts";
 import Head from "../components/head";
+import Loading from "../components/loading";
 import Menu from "../components/menu";
 import { Section } from "../helpers/types";
 import { activeTitle } from "../helpers";
@@ -14,9 +16,6 @@ import Home from "./home";
 import Login from "./login";
 
 import styles from "./app.module.sass";
-import classNames from "classnames";
-import Loading from "../components/loading";
-import { Texts } from "../api/text";
 
 type Page = Section["id"];
 

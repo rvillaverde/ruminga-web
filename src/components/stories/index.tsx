@@ -1,5 +1,4 @@
 import React from "react";
-import { NextPage } from "next";
 import { Story as StoryType } from "../../api/story";
 import { Lang } from "../../i18n";
 import Story from "./story";

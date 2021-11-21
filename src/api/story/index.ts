@@ -1,9 +1,11 @@
 import { API, handleError } from "..";
 
-const API_URL = "http://localhost:3000";
 const PATH = "stories";
-
-const URL = `${API_URL}/${PATH}`;
+const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://ruminga-web.herokuapp.com";
+const URL = `${BASE_URL}/api/${PATH}`;
 
 interface StoryInfo {
   description: string;

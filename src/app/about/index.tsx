@@ -1,5 +1,5 @@
 import React from "react";
-import { Texts } from "../../api/text";
+import { Texts } from "../../api/texts";
 import { Lang } from "../../i18n";
 
 interface PropTypes {

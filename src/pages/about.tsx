@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import { Story } from "../api/story";
-import { getTexts, Texts } from "../api/text";
+import { getTexts, Texts } from "../api/texts";
 import App from "../app";
 
 interface PropTypes {

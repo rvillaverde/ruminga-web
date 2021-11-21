@@ -1,9 +1,11 @@
 import { API, handleError } from "..";
 
-const API_URL = "http://localhost:3000";
 const PATH = "texts";
-
-const URL = `${API_URL}/${PATH}`;
+const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://ruminga-web.herokuapp.com";
+const URL = `${BASE_URL}/api/${PATH}`;
 
 export interface Texts {
   about: Text;
@@ -23,8 +25,16 @@ const mapText = (data: any): Text => ({
 
 const mapTexts = (data: any[]): Text[] => data.map(mapText);
 
+// @TODO: fix baseUrl
 export const getTexts = async (): Promise<Texts> => {
-  const texts = await api.list();
+  const response = await fetch(`${URL}`);
+  const data = await response.json();
+
+  if (data.error) {
+    return handleError(data.error);
+  }
+
+  const texts = mapTexts(data);
 
   return {
     about: texts.find((t) => t.id === "about") as Text,
@@ -43,10 +53,9 @@ const api: API<Text> = {
     return Promise.resolve(mapText(data));
   },
   list: async () => {
+    console.log("list texts", URL);
     const response = await fetch(URL);
     const data = await response.json();
-
-    console.log("data", data);
 
     if (data.error) {
       return handleError(data.error);

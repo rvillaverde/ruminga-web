@@ -4,8 +4,7 @@ import React from "react";
 import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 
-// @TODO: get from env
-const BASE_URL = "https://www.ruminga.com";
+const BASE_URL = process.env.BASE_URL;
 
 interface PropTypes {
   index?: number;
