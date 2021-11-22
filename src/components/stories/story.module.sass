@@ -1,5 +1,7 @@
 @import "../../../styles/partials/_variables"
 
+$storyPadding: 80px
+
 .story
   color: black
   display: flex
@@ -8,7 +10,7 @@
   height: 100vh
   width: 100vw
   position: relative
-  padding: 80px
+  padding: $storyPadding
 
   @media ($smallScreen)
     padding: 0 40px
@@ -41,6 +43,7 @@
   max-width: 24px
   overflow: hidden
   padding-right: 0
+  margin-right: calc($storyPadding * -1)
 
   .title,
   .description
@@ -53,6 +56,7 @@
     max-height: 24px
     max-width: 100%
     padding-bottom: 0
+    margin-right: 0
 
 .collapse
   align-items: center

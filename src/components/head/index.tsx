@@ -1,6 +1,6 @@
 import type { NextPage, NextPageContext } from "next";
-import NextHead from "next/head";
 import React from "react";
+import NextHead from "next/head";
 import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 
@@ -14,11 +14,11 @@ interface PropTypes {
 }
 
 interface OgMetadata {
-  url: string;
-  title: string;
-  image?: string;
-  type?: string;
   description?: string;
+  image?: string;
+  title: string;
+  type?: string;
+  url: string;
 }
 
 class Head extends React.Component<PropTypes> {
@@ -50,18 +50,20 @@ class Head extends React.Component<PropTypes> {
     const { og, title } = this;
 
     return (
-      // <NextHead>
-      //   <title>{title}</title>
-      // </NextHead>
       <NextHead>
         <title>{title}</title>
         <meta name="description" content="Ruminga" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:url" content={og.url} />
-        {/* <meta property="og:type" content="article" /> */}
+        <meta property="og:type" content="blog" />
         <meta property="og:title" content={og.title} />
         {/* <meta property="og:description" content="Ruminga" /> */}
         {/* <meta property="og:image" content="ruminga.com/logo.png" /> */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Quicksand:wght@300&display=swap"
+          rel="stylesheet"
+          key="fonts"
+        ></link>
       </NextHead>
     );
   }
