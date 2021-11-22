@@ -1,36 +1,40 @@
 @import "../../../styles/partials/_variables"
 
 .menu-wrapper
+  display: none
+  left: 0
   position: fixed
   top: 0
-  left: 0
   z-index: 4
 
-  &.fixed
-    width: 240px
-    .menu-toggle
-      visibility: hidden
+  &.home.floating
+    display: block
 
-  &.home.fixed
-    display: none
+  &:not(.home).fixed
+    display: block
 
   @media ($smallScreen)
     &.fixed
-      display: none
+      display: none !important
+    &.floating
+      display: block
 
-  &.floating
-    &:not(.open) .menu
-      width: 0
-    .menu
+.menu-wrapper.fixed
+  width: $menuWidth
+  .menu-toggle
+    display: none
+
+.menu-wrapper.floating
+  .menu
+    width: 100vw
+    &.animate-out
+      animation: out-animation 250ms ease-out
+      animation-fill-mode: forwards
+    &.animate-in
       width: 100vw
-      &.animate-out
-        animation: out-animation 250ms ease-out
-        animation-fill-mode: forwards
-    &.open
-      .menu
-        &.animate-in
-          width: 100vw
-          animation: in-animation 250ms ease-in
+      animation: in-animation 250ms ease-in
+    .menu-list
+      text-align: center
 
 .menu
   height: 100vh
@@ -41,9 +45,6 @@
   justify-content: center
   flex-direction: column
   transition: width 250ms ease-out
-
-  // .open
-  //   width: 100vw
 
 .menu-toggle
   position: absolute

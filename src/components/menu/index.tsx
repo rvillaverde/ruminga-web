@@ -20,23 +20,32 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { asPath } = useRouter();
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [menuAnimating, setMenuAnimating] = useState<boolean>(false);
 
   const items = menu[locale];
-
-  const toggleMenuOpen = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const isHome = active === "home";
+  const isFloating = type === "floating";
+
+  const menuStyle =
+    isFloating && !menuAnimating && !menuOpen ? { display: "none" } : {};
+
+  const toggleMenuOpen = () => setMenuOpen(!menuOpen);
+
+  const handleMenuAnimation = () => setMenuAnimating(!menuAnimating);
+
+  const handleMenuAnimationEnd = () => {
+    handleMenuAnimation();
+    toggleMenuOpen();
+  };
 
   return (
     <div
       className={classnames(styles["menu-wrapper"], styles[type], {
-        [styles.open]: menuOpen,
+        [styles.open]: !menuAnimating && menuOpen,
         [styles.home]: isHome,
       })}
     >
-      <button className={styles["menu-toggle"]} onClick={toggleMenuOpen}>
+      <button className={styles["menu-toggle"]} onClick={handleMenuAnimation}>
         {menuOpen ? (
           <CloseIcon />
         ) : (
@@ -45,9 +54,11 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       </button>
       <div
         className={classnames(styles.menu, {
-          [styles["animate-in"]]: menuOpen,
-          [styles["animate-out"]]: !menuOpen,
+          [styles["animate-in"]]: menuAnimating && !menuOpen,
+          [styles["animate-out"]]: menuAnimating && menuOpen,
         })}
+        style={menuStyle}
+        onAnimationEnd={handleMenuAnimationEnd}
       >
         <ul className={styles["menu-list"]}>
           {items.map((item) => (
