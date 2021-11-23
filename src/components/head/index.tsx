@@ -13,15 +13,32 @@ interface PropTypes {
   title?: string;
 }
 
-interface OgMetadata {
-  description?: string;
-  image?: string;
+interface Og {
+  description: string;
+  image: string;
   title: string;
   type?: string;
   url: string;
 }
 
+const description = {
+  en: "Photo diary",
+  es: "Diario fotográfico",
+};
+
 class Head extends React.Component<PropTypes> {
+  get description(): Og["description"] {
+    const { lang } = this.props;
+
+    return description[lang];
+  }
+
+  get image(): Og["image"] {
+    const { story } = this.props;
+
+    return `${story ? story.photos[0].image.thumbnails.large : ""}`;
+  }
+
   get title(): string {
     const { lang, story, title } = this.props;
     const name = story && story[lang].name;
@@ -37,12 +54,14 @@ class Head extends React.Component<PropTypes> {
     }`;
   }
 
-  get og(): OgMetadata {
-    const { title, url } = this;
+  get og(): Og {
+    const { description, image, title, url } = this;
 
     return {
-      url,
+      description,
+      image,
       title,
+      url,
     };
   }
 
@@ -57,8 +76,8 @@ class Head extends React.Component<PropTypes> {
         <meta property="og:url" content={og.url} />
         <meta property="og:type" content="blog" />
         <meta property="og:title" content={og.title} />
-        {/* <meta property="og:description" content="Ruminga" /> */}
-        {/* <meta property="og:image" content="ruminga.com/logo.png" /> */}
+        <meta property="og:description" content={og.description} />
+        <meta property="og:image" content={og.image} />
         <link
           href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Quicksand:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"

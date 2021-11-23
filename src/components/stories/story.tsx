@@ -35,7 +35,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
     const { isCurrent, isFavorite, lang, story } = this.props;
     const { collapsed } = this.state;
 
-    const { description, name } = story[lang];
+    const { country, description, name } = story[lang];
 
     return (
       <div
@@ -59,6 +59,10 @@ class Story extends React.Component<PropTypes, StateTypes> {
             <button onClick={this.handleToggleFavorite}>
               <HeartIcon isFavorite={isFavorite} />
             </button>
+          </div>
+          <div className={styles.location}>
+            <span className={styles.country}>{country}</span>,{" "}
+            <span className={styles.year}>{story.year}</span>
           </div>
           {description && (
             <div className={styles.description}>

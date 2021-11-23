@@ -62,7 +62,11 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         style={menuStyle}
         onAnimationEnd={handleMenuAnimationEnd}
       >
-        <Logo className={styles["menu-logo"]} />
+        <Link href={"/"}>
+          <a>
+            <Logo className={styles["menu-logo"]} />
+          </a>
+        </Link>
         <ul className={styles["menu-list"]}>
           {items.map((item) => (
             <li key={item.id}>

@@ -8,8 +8,10 @@ const BASE_URL =
 const URL = `${BASE_URL}/api/${PATH}`;
 
 interface StoryInfo {
+  country: string;
   description: string;
   name: string;
+  place: string;
 }
 
 export interface Story {
@@ -18,6 +20,7 @@ export interface Story {
   id: string;
   order: number;
   photos: Photo[];
+  year: number;
 }
 
 export interface Photo {
@@ -40,12 +43,16 @@ const mapStory = (data: any): Story => {
   const story: Story = {
     id: data.id,
     en: {
+      country: data.en.country,
       description: data.en.description,
       name: data.en.name,
+      place: data.en.place,
     },
     es: {
+      country: data.es.country,
       description: data.es.description,
       name: data.es.name,
+      place: data.es.place,
     },
     order: data.order,
     photos: data.photos.map((photo: any) => ({
@@ -61,6 +68,7 @@ const mapStory = (data: any): Story => {
       },
       order: photo.order,
     })),
+    year: data.year,
   };
 
   return story;
