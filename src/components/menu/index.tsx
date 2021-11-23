@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Section } from "../../helpers/types";
 import { Lang, locales, menu } from "../../i18n";
+import CloseIcon from "../../icons/close";
+import Logo from "../../icons/logo";
 import MenuIcon from "../../icons/menu";
+import SocialMedia from "./social-media";
 
 import styles from "./menu.module.sass";
-import CloseIcon from "../../icons/close";
 
 interface PropTypes {
   active: Section["id"];
@@ -60,6 +62,7 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         style={menuStyle}
         onAnimationEnd={handleMenuAnimationEnd}
       >
+        <Logo className={styles["menu-logo"]} />
         <ul className={styles["menu-list"]}>
           {items.map((item) => (
             <li key={item.id}>
@@ -91,6 +94,7 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
             </li>
           ))}
         </ul>
+        <SocialMedia />
       </div>
     </div>
   );

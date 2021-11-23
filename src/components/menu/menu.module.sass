@@ -5,28 +5,36 @@
   left: 0
   position: fixed
   top: 0
+  height: 100vh
   z-index: 4
+  justify-content: center
 
   &.home.floating
-    display: block
+    display: flex
 
   &:not(.home).fixed
-    display: block
+    display: flex
 
   @media ($smallScreen)
     &.fixed
       display: none !important
     &.floating
-      display: block
+      display: flex
 
 .menu-wrapper.fixed
+  padding: 24px
   width: $menuWidth
   .menu-toggle
     display: none
 
 .menu-wrapper.floating
   .menu
+    padding: 44px
     width: 100vw
+
+    @media ($smallScreen)
+      padding: 48px
+
     &.animate-out
       animation: out-animation 250ms ease-out
       animation-fill-mode: forwards
@@ -36,15 +44,29 @@
     .menu-list
       text-align: center
 
+.menu-wrapper.fixed
+  .menu-logo
+    height: auto
+    max-width: 120px
+
+.menu-wrapper.floating
+  .menu-logo
+    height: auto
+    max-width: 200px
+
+    @media ($smallScreen)
+      max-width: 132px
+
 .menu
-  height: 100vh
-  padding: 20px
+  align-items: center
   background-color: rgba(255,255,255,0.96)
   display: flex
-  align-items: center
-  justify-content: center
   flex-direction: column
-  transition: width 250ms ease-out
+  justify-content: space-between
+
+  ul
+    list-style: none
+    padding: 0
 
 .menu-toggle
   position: absolute
@@ -60,15 +82,11 @@
   width: 20px
 
 .menu-list
-  list-style: none
-  padding: 0
   font-size: 14px
   line-height: 28px
 
 .locales-list
-  list-style: none
   display: flex
-  padding: 0
 
   li:first-child
     span
@@ -81,6 +99,38 @@
 .locale
   margin: 0 4px
   text-transform: uppercase
+
+  strong
+    font-weight: 600
+
+.social-media-list
+  display: flex
+  margin: 0
+
+.social-media-item
+  display: flex
+  margin: 0 12px
+
+  @media ($smallScreen)
+    margin: 0 8px
+
+  i svg path
+    fill: $grayDark
+    transition: all 250ms ease
+
+  &:hover
+    svg path
+      fill: $color
+
+  > a, i
+    display: flex
+    align-items: center
+
+  &:first-child
+    margin-left: 0
+
+  &:last-child
+    margin-right: 0
 
 @keyframes in-animation
   0%

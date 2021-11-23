@@ -24,7 +24,7 @@ const MenuIcon: React.FunctionComponent<PropTypes> = ({
           x2="28"
           transform="translate(166.5 2710.5)"
           fill="none"
-          stroke="#1c1419"
+          stroke="#616161"
           strokeWidth="2"
         />
         <line
@@ -32,7 +32,7 @@ const MenuIcon: React.FunctionComponent<PropTypes> = ({
           x2="28"
           transform="translate(166.5 2721.5)"
           fill="none"
-          stroke="#1c1419"
+          stroke="#616161"
           strokeWidth="2"
         />
         <line
@@ -40,7 +40,7 @@ const MenuIcon: React.FunctionComponent<PropTypes> = ({
           x2="28"
           transform="translate(166.5 2732.5)"
           fill="none"
-          stroke="#1c1419"
+          stroke="#616161"
           strokeWidth="2"
         />
       </g>

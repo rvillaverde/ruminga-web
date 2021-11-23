@@ -12,7 +12,7 @@ const CloseIcon = () => (
         y2="22"
         transform="translate(126.5 2709.5)"
         fill="none"
-        stroke="#1c1419"
+        stroke="#616161"
         strokeWidth="2"
       />
       <line
@@ -21,7 +21,7 @@ const CloseIcon = () => (
         y2="22"
         transform="translate(126.5 2709.5)"
         fill="none"
-        stroke="#1c1419"
+        stroke="#616161"
         strokeWidth="2"
       />
     </g>
