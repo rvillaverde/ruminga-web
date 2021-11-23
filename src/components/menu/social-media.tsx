@@ -33,7 +33,7 @@ const SocialMedia: React.FunctionComponent = () => (
   <ul className={styles["social-media-list"]}>
     {items.map((item) => (
       <li className={styles["social-media-item"]} key={item.name}>
-        <a href={item.url} target="_blank">
+        <a href={item.url} rel="noreferrer" target="_blank">
           {item.icon}
         </a>
       </li>
