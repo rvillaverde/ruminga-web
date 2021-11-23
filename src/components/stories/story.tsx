@@ -32,7 +32,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
     this.props.onToggleFavorite(!!this.props.isFavorite);
 
   render() {
-    const { isCurrent, isFavorite, lang, onToggleFavorite, story } = this.props;
+    const { isCurrent, isFavorite, lang, story } = this.props;
     const { collapsed } = this.state;
 
     const { description, name } = story[lang];
