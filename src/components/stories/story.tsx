@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import Link from "next/link";
 import { Story as StoryType } from "../../api/story";
+import ChevronRight from "../../icons/chevronRight";
 import HeartIcon from "../../icons/heart";
 import { Lang } from "../../i18n";
 
@@ -27,10 +28,8 @@ class Story extends React.Component<PropTypes, StateTypes> {
 
   handleCollaspe = () => this.setState({ collapsed: !this.state.collapsed });
 
-  handleToggleFavorite = () => {
-    // console.log("handleToggleFavorite", !!isFavorite);
-    return this.props.onToggleFavorite(!!this.props.isFavorite);
-  };
+  handleToggleFavorite = () =>
+    this.props.onToggleFavorite(!!this.props.isFavorite);
 
   render() {
     const { isCurrent, isFavorite, lang, onToggleFavorite, story } = this.props;
@@ -51,7 +50,6 @@ class Story extends React.Component<PropTypes, StateTypes> {
             [styles.collapsed]: collapsed,
           })}
         >
-          <div className={styles.collapse} onClick={this.handleCollaspe}></div>
           <div className={styles.title}>
             <Link href={`/?storyId=${story.id}`}>
               <a>
@@ -69,6 +67,9 @@ class Story extends React.Component<PropTypes, StateTypes> {
               </div>
             </div>
           )}
+          <div className={styles.collapse} onClick={this.handleCollaspe}>
+            <ChevronRight />
+          </div>
         </div>
         <div className={styles.photos}>
           {story.photos.map((photo) => (
