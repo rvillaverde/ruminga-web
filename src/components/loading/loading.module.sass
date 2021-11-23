@@ -1,3 +1,5 @@
+@import "../../../styles/partials/_variables"
+
 .loading
   position: fixed
   top: 0
@@ -9,3 +11,26 @@
   height: 100vh
   z-index: 12
   background-color: white
+
+.container
+  align-items: center
+  display: flex
+  flex-direction: column
+  height: 50vh
+  justify-content: center
+  position: relative
+
+.spinner
+  animation: spin 2.5s ease-in-out infinite
+  transform-origin: 50% 50%
+
+  &, svg
+    height: 80px
+    width: 80px
+
+@keyframes spin
+  0%
+    transform: rotate(360deg)
+
+  100%
+    transform: rotate(0deg)

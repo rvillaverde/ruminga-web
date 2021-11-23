@@ -1,19 +1,21 @@
 import React from "react";
 import { Lang } from "../../i18n";
+import LoadingIcon from "../../icons/loading";
 
 import styles from "./loading.module.sass";
 
 interface PropTypes {
-  lang: Lang;
+  lang?: Lang;
 }
 
-const loadingText = {
-  en: "Loading...",
-  es: "Cargando...",
-};
-
-const Loading: React.FunctionComponent<PropTypes> = ({ lang }: PropTypes) => (
-  <div className={styles.loading}>{loadingText[lang]}</div>
+const Loading: React.FunctionComponent<PropTypes> = () => (
+  <div className={styles.loading}>
+    <div className={styles.container}>
+      <div className={styles.spinner}>
+        <LoadingIcon />
+      </div>
+    </div>
+  </div>
 );
 
 export default Loading;
