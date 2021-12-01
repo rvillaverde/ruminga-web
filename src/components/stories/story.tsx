@@ -1,10 +1,11 @@
 import React from "react";
 import classnames from "classnames";
 import Link from "next/link";
-import { Story as StoryType } from "../../api/story";
+import { Story as StoryType, Photo as StoryPhotoType } from "../../api/story";
 import ChevronRight from "../../icons/chevronRight";
 import HeartIcon from "../../icons/heart";
 import { Lang } from "../../i18n";
+import Carousel from "./carousel";
 
 import styles from "./story.module.sass";
 
@@ -18,11 +19,12 @@ interface PropTypes {
 }
 
 interface StateTypes {
+  activePhoto?: StoryPhotoType;
   collapsed: boolean;
 }
 
 class Story extends React.Component<PropTypes, StateTypes> {
-  state = {
+  state: StateTypes = {
     collapsed: false,
   };
 
@@ -31,9 +33,43 @@ class Story extends React.Component<PropTypes, StateTypes> {
   handleToggleFavorite = () =>
     this.props.onToggleFavorite(!!this.props.isFavorite);
 
+  handleEnterCarousel = (photo: StoryPhotoType) => {
+    window.addEventListener("keyup", this.handleKeyUp);
+
+    this.setState({
+      activePhoto: photo,
+    });
+  };
+
+  handleExitCarousel = () => {
+    window.removeEventListener("keyup", this.handleKeyUp);
+
+    return this.setState({
+      activePhoto: undefined,
+    });
+  };
+
+  handleKeyUp = (e: KeyboardEvent) => {
+    const { story } = this.props;
+    const { activePhoto } = this.state;
+    const { key } = e;
+
+    const index = story.photos.findIndex(
+      (photo) => photo.id === activePhoto?.id
+    );
+
+    if (key === "ArrowLeft" && index > 0) {
+      this.setState({ activePhoto: story.photos[index - 1] });
+    }
+
+    if (key === "ArrowRight" && index < story.photos.length - 1) {
+      this.setState({ activePhoto: story.photos[index + 1] });
+    }
+  };
+
   render() {
     const { isCurrent, isFavorite, lang, story } = this.props;
-    const { collapsed } = this.state;
+    const { activePhoto, collapsed } = this.state;
 
     const { country, description, name } = story[lang];
 
@@ -46,7 +82,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
         id={story.id}
       >
         <div
-          className={classnames(styles.card, {
+          className={classnames(styles.card, styles[story.cardPosition], {
             [styles.collapsed]: collapsed,
           })}
         >
@@ -75,16 +111,13 @@ class Story extends React.Component<PropTypes, StateTypes> {
             <ChevronRight />
           </div>
         </div>
-        <div className={styles.photos}>
-          {story.photos.map((photo) => (
-            <div className={styles.photo} key={photo.id}>
-              <div
-                className={styles.image}
-                style={{ backgroundImage: `url(${photo.image.url})` }}
-              ></div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          activePhoto={activePhoto}
+          lang={lang}
+          onEnterFullScreen={this.handleEnterCarousel}
+          onExitFullScreen={this.handleExitCarousel}
+          story={story}
+        />
       </div>
     );
   }

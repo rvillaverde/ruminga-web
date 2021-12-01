@@ -9,7 +9,7 @@ import Loading from "../components/loading";
 import Menu from "../components/menu";
 import { Section } from "../helpers/types";
 import { activeTitle } from "../helpers";
-import { Lang, lang } from "../i18n";
+import { getLang, Lang } from "../i18n";
 import About from "./about";
 import Favorites from "./favorites";
 import Home from "./home";
@@ -36,30 +36,33 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const [cookie, setCookie] = useCookies(["favorites", "lang"]);
   // @TODO: Not so nice? review or refactor
   const { favorites = [] } = cookie;
+  // const { lang: selectedLang } = cookie;
 
-  const title = activeTitle(page, lang(locale));
+  // const lang = getLang({ locale, selectedLang });
+  const lang = getLang({ locale });
+
+  const title = activeTitle(page, lang);
   const isHome = page === "home";
 
-  // @TODO: favorites should be an array of storyId and photo
-  const handleFavoritesChange = (favorites: Story["id"][]) => {
-    // console.log("handle favorites change", favorites);
-    return setCookie("favorites", favorites);
-  };
+  const handleFavoritesChange = (favorites: Story["id"][]) =>
+    setCookie("favorites", favorites);
+
+  const handleLanguageChange = (lang: Lang) => setCookie("lang", lang);
 
   return (
     <div className={classNames(styles.container, { [styles.home]: isHome })}>
-      <Head index={index} lang={lang(locale)} story={story} title={title} />
+      <Head index={index} lang={lang} story={story} title={title} />
 
       <main className={styles.main}>
         {loading ? (
-          <Loading lang={lang(locale)} />
+          <Loading lang={lang} />
         ) : (
           <React.Fragment>
             {isHome ? (
               <Home
                 index={index || 0}
                 favorites={favorites}
-                lang={lang(locale)}
+                lang={lang}
                 stories={stories}
                 onFavoritesChange={handleFavoritesChange}
                 story={story}
@@ -68,17 +71,13 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
               <React.Fragment>
                 <div className="page">
                   {page === "about" && texts && (
-                    <About
-                      lang={lang(locale)}
-                      title={title}
-                      text={texts["about"]}
-                    />
+                    <About lang={lang} text={texts["about"]} title={title} />
                   )}
-                  {page === "login" && <Login lang={lang(locale)} />}
+                  {page === "login" && <Login lang={lang} />}
                   {page === "favorites" && (
                     <Favorites
                       favorites={favorites}
-                      lang={lang(locale)}
+                      lang={lang}
                       onFavoritesChange={handleFavoritesChange}
                       stories={stories || []}
                       title={title}
@@ -91,8 +90,18 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         )}
       </main>
 
-      <Menu active={page} locale={locale as Lang} type="floating" />
-      <Menu active={page} locale={locale as Lang} type="fixed" />
+      <Menu
+        active={page}
+        locale={locale as Lang}
+        onLangChange={handleLanguageChange}
+        type="floating"
+      />
+      <Menu
+        active={page}
+        locale={locale as Lang}
+        onLangChange={handleLanguageChange}
+        type="fixed"
+      />
     </div>
   );
 };

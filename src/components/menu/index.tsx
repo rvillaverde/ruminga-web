@@ -14,11 +14,12 @@ import styles from "./menu.module.sass";
 interface PropTypes {
   active: Section["id"];
   locale: Lang;
+  onLangChange: (lang: Lang) => void;
   type: "fixed" | "floating";
 }
 
-const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { active, locale, type } = props;
+const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { active, locale, onLangChange, type } = props;
   const { asPath } = useRouter();
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -31,13 +32,20 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const menuStyle =
     isFloating && !menuAnimating && !menuOpen ? { display: "none" } : {};
 
-  const toggleMenuOpen = () => setMenuOpen(!menuOpen);
+  const toggleMenuOpen = () => {
+    return setMenuOpen(!menuOpen);
+  };
 
   const handleMenuAnimation = () => setMenuAnimating(!menuAnimating);
 
   const handleMenuAnimationEnd = () => {
     handleMenuAnimation();
     toggleMenuOpen();
+  };
+
+  const handleLangChanged = (lang: Lang) => () => {
+    toggleMenuOpen();
+    onLangChange(lang);
   };
 
   return (
@@ -90,7 +98,7 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
                     <strong>{l}</strong>
                   ) : (
                     <Link href={asPath} locale={l}>
-                      <a onClick={toggleMenuOpen}>{l}</a>
+                      <a onClick={handleLangChanged(l)}>{l}</a>
                     </Link>
                   )}
                 </span>
@@ -104,4 +112,4 @@ const About: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   );
 };
 
-export default About;
+export default Menu;

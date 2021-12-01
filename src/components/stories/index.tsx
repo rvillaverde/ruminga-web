@@ -52,32 +52,32 @@ class Stories extends React.Component<PropTypes, StateTypes> {
     // const refresh = () => {
     //   console.log("scroll stopped");
     // };
-    !!window &&
-      window.addEventListener("scroll", () => {
-        // if (this.state.timer) {
-        //   console.log("clear timer");
-        //   clearTimeout(this.state.timer);
-        // }
+    // !!window &&
+    //   window.addEventListener("scroll", () => {
+    //     // if (this.state.timer) {
+    //     //   console.log("clear timer");
+    //     //   clearTimeout(this.state.timer);
+    //     // }
 
-        // this.setState({
-        //   timer: setTimeout(refresh, 250),
-        // });
-        // this.updateState(window.scrollY);
-        if (this._timeout) {
-          //if there is already a timeout in process cancel it
-          clearTimeout(this._timeout);
-          this._timeout = null;
-        }
-        this._timeout = setTimeout(() => {
-          // console.log("scroll stopped");
-          this.handleWheel();
-        }, 50);
-        //  if(this.state.scrollStatus !== 'scrolling') {
-        //    this.setState({
-        //      scrollStatus:'scrolling'
-        //    });
-        //  }
-      });
+    //     // this.setState({
+    //     //   timer: setTimeout(refresh, 250),
+    //     // });
+    //     // this.updateState(window.scrollY);
+    //     if (this._timeout) {
+    //       //if there is already a timeout in process cancel it
+    //       clearTimeout(this._timeout);
+    //       this._timeout = null;
+    //     }
+    //     this._timeout = setTimeout(() => {
+    //       // console.log("scroll stopped");
+    //       this.handleWheel();
+    //     }, 50);
+    //     //  if(this.state.scrollStatus !== 'scrolling') {
+    //     //    this.setState({
+    //     //      scrollStatus:'scrolling'
+    //     //    });
+    //     //  }
+    //   });
   };
 
   componentDidUpdate = (prevProps: PropTypes) =>

@@ -14,9 +14,7 @@ interface PropTypes {
 const Favorites: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { favorites, lang, onRemoveFavorite } = props;
 
-  const handleRemoveFavorote = (id: Story["id"]) => () => {
-    return onRemoveFavorite(id);
-  };
+  const handleRemoveFavorote = (id: Story["id"]) => () => onRemoveFavorite(id);
 
   return (
     <div className={styles.favorites}>

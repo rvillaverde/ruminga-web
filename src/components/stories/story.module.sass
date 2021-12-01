@@ -5,14 +5,15 @@ $cardPadding: 28px
 $transition: all 250ms ease
 
 .story
+  align-items: center
   color: black
   display: flex
-  justify-content: center
-  align-items: center
   height: 100vh
-  width: 100vw
-  position: relative
+  justify-content: center
   padding: $storyPadding
+  position: relative
+  scroll-snap-align: center
+  width: 100vw
 
   @media ($smallScreen)
     padding: 0 40px
@@ -26,7 +27,6 @@ $transition: all 250ms ease
   background-color: rgba(255,255,255,1.8)
   display: flex
   flex-direction: column
-  margin-left: auto
   margin-top: auto
   max-height: 400px
   overflow: hidden
@@ -35,20 +35,35 @@ $transition: all 250ms ease
   transition: $transition
   z-index: 4
 
+  @media ($notSmallScreen)
+    &.left
+      margin-right: auto
+
+    &.right
+      margin-left: auto
+
   @media ($smallScreen)
     justify-content: space-between
     margin-bottom: 8px
     max-height: min(240px, 40vh)
     width: 100%
 
-.collapsed
+.card.collapsed
   max-width: $cardPadding
   overflow: hidden
-  padding-right: 0
-  margin-right: calc($storyPadding * -1)
+
+  @media ($notSmallScreen)
+    &.left
+      margin-left: calc($storyPadding * -1)
+      padding-left: 0
+
+    &.right
+      margin-right: calc($storyPadding * -1)
+      padding-right: 0
 
   .title,
-  .description
+  .description,
+  .location
     opacity: 0
 
   .collapse > i
@@ -58,9 +73,9 @@ $transition: all 250ms ease
       transform: rotate(270deg)
 
   @media ($smallScreen)
+    margin-right: 0
     max-width: 100%
     padding-right: $cardPadding
-    margin-right: 0
 
     .title,
     .description
@@ -75,7 +90,6 @@ $transition: all 250ms ease
   display: flex
   height: 100%
   justify-content: center
-  left: 0
   position: absolute
   top: 0
   width: $cardPadding
@@ -93,8 +107,19 @@ $transition: all 250ms ease
 
   @media ($smallScreen)
     display: none
+    left: 0
     width: 100%
     height: $cardPadding
+
+@media ($notSmallScreen)
+  .card.left
+    .collapse
+      right: 0
+      transform: rotate(180deg)
+
+  .card.right
+    .collapse
+      left: 0
 
 .title
   display: flex
@@ -109,11 +134,7 @@ $transition: all 250ms ease
 
 .location
   color: $grayMedium
-  line-height: 12px
-  // text-transform: uppercase
-  // font-size: 10px
-
-.year
+  line-height: 16px
 
 .description
   display: flex
@@ -134,8 +155,31 @@ $transition: all 250ms ease
     width: 100%
 
 .description-scroll
-  white-space: pre-line
   overflow: auto
+  white-space: pre-line
+
+.carousel
+  background-color: red
+
+.full-screen
+  background: black
+  display: flex
+  height: 100vh
+  left: 0
+  position: fixed
+  top: 0
+  width: 100vw
+  z-index: 8
+
+.exit-button
+  background-color: transparent
+  border: none
+  cursor: pointer
+  padding: 20px
+  position: absolute
+
+  svg line
+    stroke: white
 
 .photos
   display: flex
@@ -145,13 +189,18 @@ $transition: all 250ms ease
   width: 100vw
   z-index: 0
 
+  @media ($smallScreen)
+    scroll-snap-type: x mandatory
+
 .photo
+  cursor: pointer
   display: flex
   min-width: 100vw
   padding: 40px
 
   @media ($smallScreen)
     padding: 12px
+    scroll-snap-align: center
 
 .image
   background-position: center

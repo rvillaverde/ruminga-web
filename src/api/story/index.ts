@@ -15,6 +15,7 @@ interface StoryInfo {
 }
 
 export interface Story {
+  cardPosition: "left" | "right";
   en: StoryInfo;
   es: StoryInfo;
   id: string;
@@ -41,6 +42,7 @@ export interface Image {
 
 const mapStory = (data: any): Story => {
   const story: Story = {
+    cardPosition: data.cardPosition,
     id: data.id,
     en: {
       country: data.en.country,

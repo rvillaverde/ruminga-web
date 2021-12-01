@@ -2,10 +2,15 @@ import menu from "./menu";
 
 export type Lang = "en" | "es";
 
-export const defaultLocale: Lang = "en";
+export const defaultLocale: Lang = "es";
 
-export const lang = (locale?: string): Lang =>
-  (locale as Lang) || defaultLocale;
+export const getLang = ({
+  locale,
+  selectedLang,
+}: {
+  locale?: string;
+  selectedLang?: Lang;
+}): Lang => selectedLang || (locale as Lang) || defaultLocale;
 
 export const locales: Lang[] = ["en", "es"];
 
