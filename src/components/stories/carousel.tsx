@@ -55,7 +55,7 @@ const Carousel: React.FunctionComponent<PropTypes> = ({
           <div className={styles.photo} key={photo.id}>
             <a
               className={styles.image}
-              onClick={handleEnterFullScreen(photo)}
+              // onClick={handleEnterFullScreen(photo)}
               style={{ backgroundImage: `url(${photo.image.url})` }}
             ></a>
           </div>
