@@ -16,6 +16,7 @@ interface PropTypes {
   lang: Lang;
   onToggleFavorite: (isFavorite: boolean) => void;
   story: StoryType;
+  style?: React.CSSProperties;
 }
 
 interface StateTypes {
@@ -68,7 +69,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
   };
 
   render() {
-    const { isCurrent, isFavorite, lang, story } = this.props;
+    const { isCurrent, isFavorite, lang, story, style } = this.props;
     const { activePhoto, collapsed } = this.state;
 
     const { country, description, name } = story[lang];
@@ -80,6 +81,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
           [styles.favorite]: isFavorite,
         })}
         id={story.id}
+        style={style}
       >
         <div
           className={classnames(styles.card, styles[story.cardPosition], {

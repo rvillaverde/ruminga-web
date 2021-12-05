@@ -7,7 +7,7 @@ import "../../styles/globals.sass";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [stories, setStories] = useState<Story[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchStories();

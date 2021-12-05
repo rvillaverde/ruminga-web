@@ -71,6 +71,7 @@ class Head extends React.Component<PropTypes> {
     return (
       <NextHead>
         <title>{title}</title>
+        <meta name="mobile-web-app-capable" content="yes"></meta>
         <meta name="description" content="Ruminga" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:url" content={og.url} />

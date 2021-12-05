@@ -77,10 +77,10 @@ $transition: all 250ms ease
     max-width: 100%
     padding-right: $cardPadding
 
-    .title,
-    .description
+    .title
       opacity: 1
 
+    .location,
     .description
       max-height: 0
 
@@ -135,6 +135,10 @@ $transition: all 250ms ease
 .location
   color: $grayMedium
   line-height: 16px
+  max-height: 32px
+
+  @media ($smallScreen)
+    transition: $transition
 
 .description
   display: flex
@@ -143,6 +147,7 @@ $transition: all 250ms ease
 
   @media ($smallScreen)
     transition: $transition
+    max-height: 400px
 
     & + .collapse
       display: flex

@@ -57,7 +57,7 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     <div className={classNames(styles.container, { [styles.home]: isHome })}>
       <Head index={index} lang={lang} story={story} title={title} />
 
-      <main className={styles.main}>
+      <main className={styles.main} id="main">
         {loading ? (
           <Loading lang={lang} />
         ) : (
