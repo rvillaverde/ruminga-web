@@ -1,10 +1,7 @@
 import { API, handleError } from "..";
 
 const PATH = "texts";
-const BASE_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8080"
-    : "https://ruminga-web.herokuapp.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const URL = `${BASE_URL}/api/${PATH}`;
 
 export interface Texts {

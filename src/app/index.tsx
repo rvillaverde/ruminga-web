@@ -19,6 +19,8 @@ import styles from "./app.module.sass";
 
 type Page = Section["id"];
 
+type MenuType = "fixed" | "floating";
+
 interface PropTypes {
   index?: number;
   loading: boolean;
@@ -48,6 +50,8 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     setCookie("favorites", favorites);
 
   const handleLanguageChange = (lang: Lang) => setCookie("lang", lang);
+
+  const menuTypes: MenuType[] = ["fixed", "floating"];
 
   return (
     <div className={classNames(styles.container, { [styles.home]: isHome })}>
@@ -90,18 +94,15 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         )}
       </main>
 
-      <Menu
-        active={page}
-        locale={locale as Lang}
-        onLangChange={handleLanguageChange}
-        type="floating"
-      />
-      <Menu
-        active={page}
-        locale={locale as Lang}
-        onLangChange={handleLanguageChange}
-        type="fixed"
-      />
+      {menuTypes.map((type) => (
+        <Menu
+          active={page}
+          key={type}
+          locale={locale as Lang}
+          onLangChange={handleLanguageChange}
+          type={type}
+        />
+      ))}
     </div>
   );
 };
