@@ -56,7 +56,7 @@ const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       })}
     >
       <button className={styles["menu-toggle"]} onClick={handleMenuAnimation}>
-        {menuOpen ? (
+        {!menuAnimating && menuOpen ? (
           <CloseIcon />
         ) : (
           <MenuIcon className={styles["menu-icon"]} />

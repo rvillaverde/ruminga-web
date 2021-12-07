@@ -10,7 +10,7 @@ $transition: all 250ms ease
   display: flex
   height: 100vh
   justify-content: center
-  padding: $storyPadding
+  padding: $storyPadding calc($storyPadding / 2)
   position: relative
   scroll-snap-align: center
   width: 100vw
@@ -54,11 +54,11 @@ $transition: all 250ms ease
 
   @media ($notSmallScreen)
     &.left
-      margin-left: calc($storyPadding * -1)
+      margin-left: calc($storyPadding / 2 * -1)
       padding-left: 0
 
     &.right
-      margin-right: calc($storyPadding * -1)
+      margin-right: calc($storyPadding / 2 * -1)
       padding-right: 0
 
   .title,
