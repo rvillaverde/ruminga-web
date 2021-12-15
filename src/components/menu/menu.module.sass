@@ -15,7 +15,7 @@
   &:not(.home).fixed
     display: flex
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     &.fixed
       display: none !important
     &.floating
@@ -32,7 +32,7 @@
     padding: 44px
     width: 100vw
 
-    @media ($smallScreen)
+    @include media-query(0, small)
       padding: 100px
 
     &.animate-out
@@ -54,7 +54,7 @@
     height: auto
     max-width: 200px
 
-    @media ($smallScreen)
+    @include media-query(0, small)
       max-width: 132px
 
 .menu
@@ -111,7 +111,7 @@
   display: flex
   margin: 0 12px
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     margin: 0 8px
 
   i svg path

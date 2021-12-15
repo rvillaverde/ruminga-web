@@ -15,7 +15,7 @@ $transition: all 250ms ease
   scroll-snap-align: center
   width: 100vw
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     padding: 0 40px
 
   &.favorite
@@ -35,14 +35,14 @@ $transition: all 250ms ease
   transition: $transition
   z-index: 4
 
-  @media ($notSmallScreen)
+  @include media-query(small, 0)
     &.left
       margin-right: auto
 
     &.right
       margin-left: auto
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     justify-content: space-between
     margin-bottom: 8px
     max-height: min(240px, 40vh)
@@ -52,7 +52,7 @@ $transition: all 250ms ease
   max-width: $cardPadding
   overflow: hidden
 
-  @media ($notSmallScreen)
+  @include media-query(small, 0)
     &.left
       margin-left: calc($storyPadding / 2 * -1)
       padding-left: 0
@@ -69,10 +69,10 @@ $transition: all 250ms ease
   .collapse > i
     transform: rotate(180deg)
 
-    @media ($smallScreen)
+    @include media-query(0, small)
       transform: rotate(270deg)
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     margin-right: 0
     max-width: 100%
     padding-right: $cardPadding
@@ -102,16 +102,16 @@ $transition: all 250ms ease
     svg
       width: 8px
 
-    @media ($smallScreen)
+    @include media-query(0, small)
       transform: rotate(90deg)
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     display: none
     left: 0
     width: 100%
     height: $cardPadding
 
-@media ($notSmallScreen)
+@include media-query(small, 0)
   .card.left
     .collapse
       right: 0
@@ -137,7 +137,7 @@ $transition: all 250ms ease
   line-height: 16px
   max-height: 32px
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     transition: $transition
 
 .description
@@ -145,7 +145,7 @@ $transition: all 250ms ease
   margin-top: 12px
   overflow: hidden
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     transition: $transition
     max-height: 400px
 
@@ -156,7 +156,7 @@ $transition: all 250ms ease
 .description
   width: 400px
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     width: 100%
 
 .description-scroll
@@ -194,7 +194,7 @@ $transition: all 250ms ease
   width: 100vw
   z-index: 0
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     scroll-snap-type: x proximity
 
 .photo
@@ -203,7 +203,7 @@ $transition: all 250ms ease
   min-width: 100vw
   padding: 40px
 
-  @media ($smallScreen)
+  @include media-query(0, small)
     padding: 12px
     scroll-snap-align: center
 
