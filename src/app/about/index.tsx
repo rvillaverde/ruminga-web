@@ -2,6 +2,8 @@ import React from "react";
 import { Texts } from "../../api/texts";
 import { Lang } from "../../i18n";
 
+import styles from "./about.module.sass";
+
 interface PropTypes {
   lang: Lang;
   title: string;
@@ -14,9 +16,14 @@ const About: React.FunctionComponent<PropTypes> = ({
   title,
 }: PropTypes) => {
   return (
-    <div>
+    <div className={styles.about}>
       <h2 className="header">{title}.</h2>
-      <p>{text[lang]}</p>
+      <div className={styles.wrapper}>
+        <div className={styles.photo}></div>
+        <div className={styles.paragraph}>
+          <p className={styles.text}>{text[lang]}</p>
+        </div>
+      </div>
     </div>
   );
 };

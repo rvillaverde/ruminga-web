@@ -12,3 +12,21 @@ $notSmallScreen: "min-width: 577px"
 $mediumScreen: "min-width: 577px) and (max-width: 992px"
 $largeScreen: "min-width: 993px) and (max-width: 1199px"
 $extraLargeScreen: "min-width: 1200px"
+
+$breakpoints: ("small": 576px, "medium": 992px,"large": 1200px)
+
+@mixin media-query($min: 0, $max: 0)
+  $min-width: map-get($breakpoints, $min)
+  $max-width: map-get($breakpoints, $max)
+
+  @if $min == 0
+    @media screen and (max-width: $max-width)
+      @content
+
+  @else if $max == 0
+    @media screen and (min-width: $min-width + 1)
+      @content
+
+  @else
+    @media screen and (min-width: $min-width + 1) and (max-width: $max-width)
+      @content
