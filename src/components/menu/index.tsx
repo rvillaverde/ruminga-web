@@ -33,14 +33,12 @@ const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     isFloating && !menuAnimating && !menuOpen ? { display: "none" } : {};
 
   const toggleMenuOpen = () => {
-    return setMenuOpen(!menuOpen);
+    setMenuOpen(!menuOpen);
+    setMenuAnimating(!menuAnimating);
   };
 
-  const handleMenuAnimation = () => setMenuAnimating(!menuAnimating);
-
   const handleMenuAnimationEnd = () => {
-    handleMenuAnimation();
-    toggleMenuOpen();
+    setMenuAnimating(!menuAnimating);
   };
 
   const handleLangChanged = (lang: Lang) => () => {
@@ -51,21 +49,14 @@ const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   return (
     <div
       className={classnames(styles["menu-wrapper"], styles[type], {
-        [styles.open]: !menuAnimating && menuOpen,
+        // [styles.open]: menuOpen,
         [styles.home]: isHome,
       })}
     >
-      <button className={styles["menu-toggle"]} onClick={handleMenuAnimation}>
-        {!menuAnimating && menuOpen ? (
-          <CloseIcon />
-        ) : (
-          <MenuIcon className={styles["menu-icon"]} />
-        )}
-      </button>
       <div
         className={classnames(styles.menu, {
-          [styles["animate-in"]]: menuAnimating && !menuOpen,
-          [styles["animate-out"]]: menuAnimating && menuOpen,
+          [styles["animate-in"]]: menuAnimating && menuOpen,
+          [styles["animate-out"]]: menuAnimating && !menuOpen,
         })}
         style={menuStyle}
         onAnimationEnd={handleMenuAnimationEnd}
@@ -108,6 +99,12 @@ const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         </ul>
         <SocialMedia />
       </div>
+      <button className={styles["menu-toggle"]}>
+        <input type="checkbox" onChange={toggleMenuOpen} checked={!!menuOpen} />
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   );
 };
