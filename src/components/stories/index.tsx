@@ -59,11 +59,11 @@ class Stories extends React.Component<PropTypes> {
             key={story.id}
             onToggleFavorite={this.handleToggleFavorite(story)}
             story={story}
-            style={
-              this.addressBarHeight
-                ? { paddingBottom: `${this.addressBarHeight}px` }
-                : {}
-            }
+            // style={
+            //   this.addressBarHeight
+            //     ? { paddingBottom: `${this.addressBarHeight}px` }
+            //     : {}
+            // }
           />
         ))}
       </React.Fragment>
