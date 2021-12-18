@@ -3,6 +3,7 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { Story as StoryType, Photo as StoryPhotoType } from "../../api/story";
 import { Lang } from "../../i18n";
 import CloseIcon from "../../icons/close";
+import PhotoSlider from "./photo-slider";
 
 import styles from "./story.module.sass";
 
@@ -50,17 +51,7 @@ const Carousel: React.FunctionComponent<PropTypes> = ({
           </div>
         )}
       </FullScreen>
-      <div className={styles.photos}>
-        {story.photos.map((photo) => (
-          <div className={styles.photo} key={photo.id}>
-            <a
-              className={styles.image}
-              // onClick={handleEnterFullScreen(photo)}
-              style={{ backgroundImage: `url(${photo.image.url})` }}
-            ></a>
-          </div>
-        ))}
-      </div>
+      <PhotoSlider photos={story.photos} />
     </React.Fragment>
   );
 };
