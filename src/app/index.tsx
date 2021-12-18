@@ -69,6 +69,7 @@ const App: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
                 lang={lang}
                 stories={stories}
                 onFavoritesChange={handleFavoritesChange}
+                onLangChange={handleLanguageChange}
                 story={story}
               />
             ) : (

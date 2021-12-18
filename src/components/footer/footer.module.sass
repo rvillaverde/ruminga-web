@@ -1,0 +1,90 @@
+@import "../../../styles/partials/_variables"
+
+.footer-placeholder
+  height: 100vh
+  scroll-snap-align: start
+  // position: relative
+  width: 100vw
+
+  // &::after
+  //   content: ""
+  //   position: static
+  //   width: 100vw
+  //   height: 100vh
+
+.footer
+  background-color: $grayLight
+  width: 100%
+  height: 100vh
+  // position: absolute
+  // bottom: 0
+  z-index: 0
+  display: flex
+  align-items: center
+  padding: 32px 40px
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+
+.footer-content
+  display: grid
+  // align-items: stretch
+  padding: 100px
+  width: 100%
+  background-color: rgba(255,255,255,50%)
+
+  > div
+    padding: 20px
+
+  @include media-query(medium, 0)
+    grid-template-columns: repeat(3, 1fr)
+    // > div
+    //   width: 33.333%
+
+  @include media-query(0, medium)
+    grid-template-rows: repeat(2, 1fr) auto
+    padding: 32px 40px
+    max-height: 100%
+    overflow-y: auto
+    // flex-direction: column
+
+.menu
+
+ul.menu-list
+
+ul.locales-list
+  display: flex
+  margin-top: 24px
+
+  li:first-child
+    span
+      margin-left: 0
+
+  li:last-child
+    span
+      margin-right: 0
+
+  li > span
+    margin: 0 4px
+    text-transform: uppercase
+
+    strong
+      font-weight: 600
+
+.social-media
+  display: flex
+  justify-content: center
+
+  @include media-query(0, medium)
+    grid-row-start: 3
+
+  @include media-query(medium, 0)
+    align-self: flex-end
+    justify-content: center
+
+.newsletter
+
+  @include media-query(0, medium)
+    grid-row-start: 2

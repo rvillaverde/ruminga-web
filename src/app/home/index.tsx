@@ -1,5 +1,6 @@
 import React from "react";
 import { Story } from "../../api/story";
+import Footer from "../../components/footer";
 import Stories from "../../components/stories";
 import { Lang } from "../../i18n";
 
@@ -10,6 +11,7 @@ interface PropTypes {
   index: number;
   lang: Lang;
   onFavoritesChange: (favorites: Story["id"][]) => void;
+  onLangChange: (lang: Lang) => void;
   stories?: Story[];
   story?: Story;
 }
@@ -31,28 +33,31 @@ class Home extends React.Component<PropTypes> {
   };
 
   render() {
-    const { stories, favorites, story, index, lang } = this.props;
+    const { stories, favorites, story, index, lang, onLangChange } = this.props;
 
     return (
-      <div className={styles.container}>
-        <div className={styles.welcome}>
-          <h1>{title[lang]}</h1>
-        </div>
+      <React.Fragment>
+        <div className={styles.container}>
+          <div className={styles.welcome}>
+            <h1>{title[lang]}</h1>
+          </div>
 
-        {stories ? (
-          <Stories
-            current={story}
-            favorites={favorites}
-            index={index}
-            lang={lang}
-            onAddFavorite={this.handleAddFavorite}
-            onRemoveFavorite={this.handleRemoveFavorite}
-            stories={stories}
-          />
-        ) : (
-          <div>Hubo un problema al cargar</div>
-        )}
-      </div>
+          {stories ? (
+            <Stories
+              current={story}
+              favorites={favorites}
+              index={index}
+              lang={lang}
+              onAddFavorite={this.handleAddFavorite}
+              onRemoveFavorite={this.handleRemoveFavorite}
+              stories={stories}
+            />
+          ) : (
+            <div>Hubo un problema al cargar</div>
+          )}
+          <Footer locale={lang} onLangChange={onLangChange} />
+        </div>
+      </React.Fragment>
     );
   }
 }
