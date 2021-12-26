@@ -40,7 +40,7 @@ const Menu: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     setMenuAnimating(!menuAnimating);
   };
 
-  const handleLangChange = (lang: Lang) => () => {
+  const handleLangChange = (lang: Lang) => {
     toggleMenuOpen();
     onLangChange(lang);
   };
