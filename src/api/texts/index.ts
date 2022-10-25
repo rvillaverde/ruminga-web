@@ -1,7 +1,7 @@
 import { API, handleError } from "..";
 
 const PATH = "texts";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.BASE_URL;
 const URL = `${BASE_URL}/api/${PATH}`;
 
 export interface Texts {

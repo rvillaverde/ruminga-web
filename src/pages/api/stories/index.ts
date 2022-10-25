@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import NextCors from "nextjs-cors";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 const PATH = "stories";
 
 const URL = `${API_URL}/${PATH}`;
