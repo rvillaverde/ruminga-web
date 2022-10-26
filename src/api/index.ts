@@ -3,7 +3,7 @@ export interface BaseRecord {
 }
 
 export interface API<T extends BaseRecord> {
-  list: () => Promise<T[]>;
+  list: () => Promise<T[] | undefined>;
   get: (id: T["id"]) => Promise<T>;
 }
 

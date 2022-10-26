@@ -1,7 +1,7 @@
 import { API, handleError } from "..";
 
 const PATH = "texts";
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const URL = `${BASE_URL}/api/${PATH}`;
 
 export interface Texts {
@@ -51,7 +51,7 @@ const api: API<Text> = {
   },
   list: async () => {
     console.log("list texts", URL);
-    const response = await fetch(URL);
+    const response = await fetch(`${BASE_URL}/api/${PATH}`);
     const data = await response.json();
 
     if (data.error) {

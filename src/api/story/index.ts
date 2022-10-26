@@ -1,7 +1,7 @@
 import { API, handleError } from "..";
 
 const PATH = "stories";
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const URL = `${BASE_URL}/api/${PATH}`;
 
 interface StoryInfo {
@@ -87,14 +87,24 @@ const api: API<Story> = {
     return Promise.resolve(mapStory(data));
   },
   list: async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
+    console.log("fetch url", URL);
+    console.log("process env", process.env);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/${PATH}`
+      );
+      // const response = await fetch(URL);
+      const data = await response.json();
 
-    if (data.error) {
-      return handleError(data.error);
+      if (data.error) {
+        return handleError(data.error);
+      }
+
+      return Promise.resolve(mapStories(data));
+    } catch (e: any) {
+      const message = `API_ERROR - base url: ${process.env.NEXT_PUBLIC_BASE_URL}`;
+      Promise.reject(new Error(message));
     }
-
-    return Promise.resolve(mapStories(data));
   },
 };
 

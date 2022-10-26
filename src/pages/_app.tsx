@@ -16,8 +16,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const fetchStories = async () => {
     setLoading(true);
     storyAPI.list().then((stories) => {
-      setStories(stories);
-      setLoading(false);
+      if (stories) {
+        setStories(stories);
+        setLoading(false);
+      }
     });
   };
 

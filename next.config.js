@@ -7,8 +7,8 @@ module.exports = {
     locales: ["en", "es"],
   },
   env: {
-    API_URL: process.env.API_URL,
-    BASE_URL: process.env.BASE_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
   reactStrictMode: true,
   async redirects() {

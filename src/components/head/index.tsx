@@ -4,7 +4,7 @@ import NextHead from "next/head";
 import { Story } from "../../api/story";
 import { Lang } from "../../i18n";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface PropTypes {
   index?: number;
