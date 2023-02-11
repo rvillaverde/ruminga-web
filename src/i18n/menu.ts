@@ -36,11 +36,11 @@ const rawItems: RawItem[] = [
     labels: { en: "Favorites", es: "Favoritos" },
     href: "/favorites",
   },
-  {
-    id: "login",
-    labels: "Login",
-    href: "/login",
-  },
+  // {
+  //   id: "login",
+  //   labels: "Login",
+  //   href: "/login",
+  // },
 ];
 
 const items = (lang: Lang): MenuItem[] =>

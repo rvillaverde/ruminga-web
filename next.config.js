@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -6,10 +6,14 @@ module.exports = {
     defaultLocale: "es",
     locales: ["en", "es"],
   },
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-  },
+  // env: {
+  //   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  //   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  // },
+  // publicRuntimeConfig: {
+  //   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  //   NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  // },
   reactStrictMode: true,
   async redirects() {
     return [

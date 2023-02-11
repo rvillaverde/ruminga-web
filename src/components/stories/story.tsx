@@ -102,13 +102,13 @@ class Story extends React.Component<PropTypes, StateTypes> {
             <span className={styles.country}>{country}</span>,{" "}
             <span className={styles.year}>{story.year}</span>
           </div>
-          {description && (
+          {description && description.trim().length > 0 ? (
             <div className={styles.description}>
               <div className={styles["description-scroll"]}>
                 <p>{description}</p>
               </div>
             </div>
-          )}
+          ) : null}
           <div className={styles.collapse} onClick={this.handleCollaspe}>
             <ChevronRight />
           </div>

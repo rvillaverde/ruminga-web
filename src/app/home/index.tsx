@@ -36,28 +36,26 @@ class Home extends React.Component<PropTypes> {
     const { stories, favorites, story, index, lang, onLangChange } = this.props;
 
     return (
-      <React.Fragment>
-        <div className={styles.container}>
-          <div className={styles.welcome}>
+      <div className={styles.container}>
+        {/* <div className={styles.welcome}>
             <h1>{title[lang]}</h1>
-          </div>
+          </div> */}
 
-          {stories ? (
-            <Stories
-              current={story}
-              favorites={favorites}
-              index={index}
-              lang={lang}
-              onAddFavorite={this.handleAddFavorite}
-              onRemoveFavorite={this.handleRemoveFavorite}
-              stories={stories}
-            />
-          ) : (
-            <div>Hubo un problema al cargar</div>
-          )}
-          <Footer locale={lang} onLangChange={onLangChange} />
-        </div>
-      </React.Fragment>
+        {stories ? (
+          <Stories
+            current={story}
+            favorites={favorites}
+            index={index}
+            lang={lang}
+            onAddFavorite={this.handleAddFavorite}
+            onRemoveFavorite={this.handleRemoveFavorite}
+            stories={stories}
+          />
+        ) : (
+          <div>Hubo un problema al cargar</div>
+        )}
+        <Footer locale={lang} onLangChange={onLangChange} />
+      </div>
     );
   }
 }

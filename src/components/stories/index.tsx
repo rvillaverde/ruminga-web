@@ -41,15 +41,19 @@ class Stories extends React.Component<PropTypes> {
       document.getElementById(current.id)?.scrollIntoView();
   };
 
-  handleToggleFavorite = ({ id }: StoryType) => (isFavorite: boolean) =>
-    isFavorite ? this.props.onRemoveFavorite(id) : this.props.onAddFavorite(id);
+  handleToggleFavorite =
+    ({ id }: StoryType) =>
+    (isFavorite: boolean) =>
+      isFavorite
+        ? this.props.onRemoveFavorite(id)
+        : this.props.onAddFavorite(id);
 
   render() {
     const { current, favorites, index, lang, stories } = this.props;
 
     return (
       // <div className={styles.stories}>
-      <React.Fragment>
+      <>
         {stories.map((story) => (
           <Story
             index={index || 0}
@@ -66,7 +70,7 @@ class Stories extends React.Component<PropTypes> {
             // }
           />
         ))}
-      </React.Fragment>
+      </>
       // </div>
     );
   }
