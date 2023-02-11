@@ -12,6 +12,7 @@ interface StoryInfo {
 }
 
 export interface Story {
+  background: "white" | "black";
   cardPosition: "left" | "right";
   en: StoryInfo;
   es: StoryInfo;
@@ -39,6 +40,7 @@ export interface Image {
 
 const mapStory = (data: any): Story => {
   const story: Story = {
+    background: data.background || "white",
     cardPosition: data.cardPosition,
     id: data.id,
     en: {
@@ -87,8 +89,6 @@ const api: API<Story> = {
     return Promise.resolve(mapStory(data));
   },
   list: async () => {
-    console.log("fetch url", URL);
-    console.log("process env", process.env);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/${PATH}`

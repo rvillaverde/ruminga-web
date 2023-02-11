@@ -81,6 +81,7 @@ class Story extends React.Component<PropTypes, StateTypes> {
           [styles.favorite]: isFavorite,
         })}
         id={story.id}
+        style={{ backgroundColor: story.background }}
         // style={style}
       >
         <div

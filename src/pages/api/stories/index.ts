@@ -13,13 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     optionsSuccessStatus: 200,
   });
 
-  console.log("api url", process.env.NEXT_PUBLIC_API_URL);
-
   if (req.method === "GET") {
-    console.log(
-      "stories fetch url",
-      `${process.env.NEXT_PUBLIC_API_URL}/${PATH}`
-    );
     try {
       const response = await fetch(URL);
       const data = await response.json();
@@ -27,6 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data);
     } catch (e: any) {
       console.log("error", e);
+
       res.status(500).json({
         apiURL: process.env.NEXT_PUBLIC_API_URL,
         code: "NEXT_API_ERROR",
