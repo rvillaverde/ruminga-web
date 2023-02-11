@@ -10,7 +10,7 @@ $transition: all 250ms ease
   display: flex
   height: 100vh
   justify-content: center
-  padding: $storyPadding calc($storyPadding / 2)
+  padding: $storyPadding 0
   position: relative
   scroll-snap-align: center
   width: 100vw
@@ -56,11 +56,11 @@ $transition: all 250ms ease
 
   @include media-query(small, 0)
     &.left
-      margin-left: calc($storyPadding / 2 * -1)
+      // margin-left: calc($storyPadding / 2 * -1)
       padding-left: 0
 
     &.right
-      margin-right: calc($storyPadding / 2 * -1)
+      // margin-right: calc($storyPadding / 2 * -1)
       padding-right: 0
 
   .title,
