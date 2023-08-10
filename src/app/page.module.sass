@@ -1,0 +1,49 @@
+@import "../../styles/partials/_variables"
+
+.layout
+  font-family: var(--font-family--text)
+  font-weight: var(--font-weight--text)
+  height: 100%
+  position: relative
+
+  @include media-query(0, "small")
+    &:has(nav > input[id="menu-toggle"]:checked)
+      overflow-y: hidden
+
+  @include media-query("small")
+    display: flex
+
+.loading
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
+  z-index: 12
+  background-color: white
+
+  .container
+    align-items: center
+    display: flex
+    flex-direction: column
+    height: 50vh
+    justify-content: center
+    position: relative
+
+  .spinner
+    animation: spin 2.5s ease-in-out infinite
+    transform-origin: 50% 50%
+
+    &, svg
+      height: 80px
+      width: 80px
+
+  @keyframes spin
+    0%
+      transform: rotate(360deg)
+
+    100%
+      transform: rotate(0deg)
