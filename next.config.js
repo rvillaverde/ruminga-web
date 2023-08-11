@@ -29,6 +29,11 @@ const nextConfig = {
         hostname: "v5.airtableusercontent.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "ruminga.com",
+        port: "",
+      },
     ],
   },
 };
