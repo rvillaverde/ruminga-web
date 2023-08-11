@@ -13,17 +13,15 @@
     min-height: 0
     overflow-y: auto
 
-    @include media-query(0, "small")
+    @include media-query(0, "medium")
       gap: 1rem
 
   .photo
-    @include media-query("small")
+    @include media-query("medium")
       align-items: center
       justify-content: center
       display: flex
       height: 100vh
-
-    @include media-query("small", "medium")
       padding: 2rem
 
     @include media-query("medium")
@@ -32,7 +30,7 @@
   .image
     position: relative
 
-    @include media-query("small")
+    @include media-query("medium")
       background-color: transparent !important
 
     &.vertical
@@ -49,7 +47,7 @@
   footer
     padding: 1rem
 
-    @include media-query("small")
+    @include media-query("medium")
       padding: 2rem
 
     p

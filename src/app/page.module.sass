@@ -6,11 +6,11 @@
   height: 100%
   position: relative
 
-  @include media-query(0, "small")
+  @include media-query(0, "medium")
     &:has(nav > input[id="menu-toggle"]:checked)
       overflow-y: hidden
 
-  @include media-query("small")
+  @include media-query("medium")
     display: flex
 
 .loading

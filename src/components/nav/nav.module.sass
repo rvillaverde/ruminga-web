@@ -7,10 +7,10 @@
   position: relative
   transition: height 300ms ease-in-out
 
-  @include media-query("small")
+  @include media-query("medium")
     flex-shrink: 0
 
-  @include media-query(0, "small")
+  @include media-query(0, "medium")
     min-height: 4rem
     position: absolute
     z-index: 4
@@ -47,7 +47,7 @@
         &:nth-last-child(2)
           transform-origin: 0% 100%
 
-    @include media-query("small")
+    @include media-query("medium")
       &, & + label
         display: none
 
@@ -63,7 +63,7 @@
     padding: 2rem
     width: 18rem
 
-    @include media-query(0, "small")
+    @include media-query(0, "medium")
       gap: 2rem
       padding: 4rem
       transition-duration: 300ms
@@ -95,7 +95,7 @@
     display: none
 
 // Toggle & animation
-@include media-query(0, "small")
+@include media-query(0, "medium")
   .nav
     input[id="menu-toggle"]
       &:checked
