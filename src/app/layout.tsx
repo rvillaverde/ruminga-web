@@ -11,15 +11,16 @@ const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   description: "Diario fotográfico.",
-  openGraph: {
-    images: [
-      {
-        url: "/logo-horizontal.svg",
-        height: 630,
-        width: 1200,
-      },
-    ],
-  },
+  // openGraph: {
+  //   images: [
+  //     {
+  //       url: "logo-horizontal.svg",
+  //       height: 630,
+  //       width: 1200,
+  //     },
+  //   ],
+  // },
+  // metadataBase: new URL("https://www.ruminga.com"),
   title: "Ruminga",
 };
 

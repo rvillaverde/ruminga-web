@@ -16,9 +16,10 @@ export async function generateMetadata({
 
   return {
     description: `${story.es.country}, ${story.year}.`,
-    openGraph: {
-      images: story.photos[0].image.url,
-    },
+    // openGraph: {
+    //   images: `/_next/image?url=${story.photos[0].image.url}`,
+    // },
+    // metadataBase: new URL("https://www.ruminga.com"),
     title: `Ruminga - ${story.es.name}`,
   };
 }
