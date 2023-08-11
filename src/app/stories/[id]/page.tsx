@@ -14,10 +14,24 @@ export async function generateMetadata({
 }: PropTypes): Promise<Metadata> {
   const story = await fetchStory(id);
 
+  const { height, url, width } = story.photos[0].image;
+
   return {
     description: `${story.es.country}, ${story.year}.`,
     openGraph: {
-      images: story.photos[0].image.url,
+      description: `${story.es.country}, ${story.year}.`,
+      images: [
+        {
+          height,
+          url,
+          type: "jpg",
+          width,
+        },
+      ],
+      siteName: `Ruminga - ${story.es.name}`,
+      title: `Ruminga - ${story.es.name}`,
+      type: "website",
+      url: `https://www.ruminga.com/stories/${story.id}`,
     },
     title: `Ruminga - ${story.es.name}`,
   };
