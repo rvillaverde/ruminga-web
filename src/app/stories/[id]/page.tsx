@@ -2,7 +2,6 @@ import { fetchStories, fetchStory } from "@/api/story";
 import Layout from "@/components/layout";
 import Story from "@/components/story/index";
 import { Metadata } from "next";
-import styles from "./story.module.sass";
 
 interface PropTypes {
   params: {
@@ -16,10 +15,11 @@ export async function generateMetadata({
   const story = await fetchStory(id);
 
   return {
-    title: `${story.es.name} - Ruminga`,
+    description: `${story.es.country}, ${story.year}.`,
     openGraph: {
-      images: story.photos.map(({ image }) => image.url),
+      images: story.photos[0].image.url,
     },
+    title: `Ruminga - ${story.es.name}`,
   };
 }
 
