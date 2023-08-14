@@ -31,6 +31,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "api.ruminga.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "ruminga.com",
         port: "",
       },
