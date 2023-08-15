@@ -32,7 +32,7 @@ const Nav = ({ stories }: PropTypes) => {
             <Link href="/">Home</Link>
           </li>
 
-          <details>
+          <details open>
             <summary>Portfolio</summary>
             <ul>
               {stories.map(({ id, es: { name } }) => (
