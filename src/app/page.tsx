@@ -1,4 +1,4 @@
-import { fetchStories } from "@/api/story";
+import { fetchStories, fetchStoryPhotos } from "@/api/story";
 import Layout from "@/components/layout";
 import Story from "@/components/story/index";
 import { Story as StoryType } from "@/types/story";
@@ -8,10 +8,11 @@ import { Story as StoryType } from "@/types/story";
 const Home = async () => {
   const stories: StoryType[] = await fetchStories();
   const story = stories[0];
+  const photos = await fetchStoryPhotos(story.id);
 
   return (
     <Layout stories={stories}>
-      <Story story={story} />
+      <Story photos={photos} story={story} />
     </Layout>
   );
 };

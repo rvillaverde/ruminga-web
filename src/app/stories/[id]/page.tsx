@@ -1,4 +1,4 @@
-import { fetchStories, fetchStory } from "@/api/story";
+import { fetchStories, fetchStory, fetchStoryPhotos } from "@/api/story";
 import Layout from "@/components/layout";
 import Story from "@/components/story/index";
 import { Metadata } from "next";
@@ -14,7 +14,7 @@ export async function generateMetadata({
 }: PropTypes): Promise<Metadata> {
   const story = await fetchStory(id);
 
-  const { height, url, width } = story.photos[0].image;
+  const { height, url, width } = story.thumbnail;
 
   return {
     description: `${story.es.country}, ${story.year}.`,
@@ -45,9 +45,11 @@ const Page = async ({ params: { id } }: PropTypes) => {
     return null;
   }
 
+  const photos = await fetchStoryPhotos(story.id);
+
   return (
     <Layout stories={stories}>
-      <Story key={story.id} story={story} />
+      <Story key={story.id} photos={photos} story={story} />
     </Layout>
   );
 };
